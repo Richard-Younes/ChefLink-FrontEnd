@@ -1,0 +1,23 @@
+{
+	"name": "cheflink-frontend",
+	"version": "1.0.0",
+	"description": "Cheflink connect users with freelancing chef and homemade cooking",
+	"scripts": {
+		"start": "parcel login.html",
+		"build": "parcel build login.html"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Richard-Younes/ChefLink-FrontEnd.git"
+	},
+	"author": "Richard Younes",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Richard-Younes/ChefLink-FrontEnd/issues"
+	},
+	"homepage": "https://github.com/Richard-Younes/ChefLink-FrontEnd#readme",
+	"devDependencies": {
+		"parcel": "^2.11.0",
+		"sass": "^1.70.0"
+	}
+}
