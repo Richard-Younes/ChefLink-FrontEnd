@@ -9,6 +9,7 @@
 }
 
 html {
+	// This defines 1rem is 10px
 	font-size: 62.5%;
 }
 
@@ -18,8 +19,6 @@ body {
 }
 
 ::selection {
-	background-color: #ff7730;
-	color: #fff;
+	background-color: $color-primary;
+	color: $color-white;
 }
-
-/*# sourceMappingURL=style.css.map */
