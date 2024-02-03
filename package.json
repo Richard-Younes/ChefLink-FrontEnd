@@ -2,18 +2,10 @@
 	"name": "cheflink-frontend",
 	"version": "1.0.0",
 	"description": "Cheflink connect users with freelancing chef and homemade cooking",
-	"main": "index.js",
 	"scripts": {
-		"start": "npm-run-all --parallel devserver watch:sass",
-		"parcel": "parcel ./src/html/login.html",
+		"start": "parcel ./src/html/login.html",
 		"build": "parcel build ./src/html/login.html",
-		"watch:sass": "sass ./src/sass/main.scss ./src/css/style.css -w",
-		"devserver": "live-server ./src",
-		"compile:sass": "sass ./src/sass/main.scss ./src/css/style.comp.css",
-		"concat:css": "concat -o ./src/css/style.concat.css ./src/css/style.comp.css",
-		"prefix:css": "postcss --use autoprefixer -b 'last 10 versions' ./src/css/style.concat.css -o ./src/css/style.prefix.css ",
-		"compress:css": "sass ./src/css/style.prefix.css ./src/css/style.css --output-style compressed",
-		"build:css": "npm-run-all compile:sass concat:css prefix:css compress:css"
+		"devserver": "parcel ./src/html/login.html --open"
 	},
 	"repository": {
 		"type": "git",
@@ -26,12 +18,8 @@
 	},
 	"homepage": "https://github.com/Richard-Younes/ChefLink-FrontEnd#readme",
 	"devDependencies": {
-		"autoprefixer": "^10.4.17",
-		"concat": "^1.0.3",
-		"live-server": "^1.2.2",
-		"npm-run-all": "^4.1.5",
+		"@parcel/transformer-sass": "^2.11.0",
 		"parcel": "^2.11.0",
-		"postcss-cli": "^11.0.0",
 		"sass": "^1.70.0"
 	}
 }

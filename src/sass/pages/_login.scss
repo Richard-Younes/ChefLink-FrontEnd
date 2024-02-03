@@ -1,0 +1,12 @@
+/** @format */
+
+body {
+	padding: 0;
+}
+
+.login {
+	height: 100vh;
+	background-image: linear-gradient(to right, rgba($color-secondary-dark, 0.6), rgba($color-primary-dark, 0.6)), url('../img/Login-Image-cropped.webp');
+	background-size: cover;
+	background-position: center;
+}

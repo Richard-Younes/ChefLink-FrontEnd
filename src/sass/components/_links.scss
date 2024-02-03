@@ -1,0 +1,30 @@
+/** @format */
+.logo {
+	margin: 0 auto;
+	display: block;
+	width: 8rem; // Adjust the width as desired
+}
+
+.link {
+	&:link,
+	&:visited {
+		display: inline-block;
+		font-size: $small-font-size;
+		font-weight: $font-weight-bold;
+		text-decoration: none;
+
+		// To make the text color linear gradient we need to set color to transparent and background to linear gradient with clip
+		background: linear-gradient(to bottom, $color-secondary-dark, $color-secondary-light);
+		background-clip: text;
+		-webkit-background-clip: text;
+		color: transparent;
+		transition: all 0.5s ease;
+	}
+
+	&:hover,
+	&:active {
+		color: $color-secondary-light;
+		box-shadow: 0 1rem 2rem rgba($color-secondary, 0.5);
+		border-radius: 5px;
+	}
+}

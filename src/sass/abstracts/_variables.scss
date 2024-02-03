@@ -35,7 +35,7 @@ $large-font-size: 1.8rem;
 // FONT WEIGHT
 $font-weight-light: 300;
 $font-weight-normal: 400;
-$font-weight-bold: 600;
+$font-weight-bold: 500;
 
 // SPACING
 $default-spacing: 3rem;
@@ -47,38 +47,40 @@ $default-radius: 2px;
 $large-radius: 5px;
 
 // The following variables are used in the components and need testing
-// BUTTONS
-$button-padding: 1rem 2rem;
-$button-border-radius: $default-radius;
-$button-font-size: $default-font-size;
-$button-font-weight: $font-weight-bold;
 
-// FORMS
-$input-border: 1px solid $color-grey-dark-2;
-$input-border-radius: $default-radius;
-$input-padding: 1rem;
-$input-font-size: $default-font-size;
+// // BUTTONS
 
-// NAVIGATION
-$nav-height: 6rem;
-$nav-background-color: $color-primary;
-$nav-text-color: $color-white;
-$nav-link-padding: 1rem;
-$nav-link-font-size: $default-font-size;
-$nav-link-font-weight: $font-weight-bold;
+// $button-padding: 1rem 2rem;
+// $button-border-radius: $default-radius;
+// $button-font-size: $default-font-size;
+// $button-font-weight: $font-weight-bold;
 
-// CARDS
-$card-border-radius: $default-radius;
-$card-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-$card-padding: 2rem;
-$card-title-font-size: $large-font-size;
-$card-title-font-weight: $font-weight-bold;
-$card-text-color: $color-grey-dark-1;
+// // FORMS
+// $input-border: 1px solid $color-grey-dark-2;
+// $input-border-radius: $default-radius;
+// $input-padding: 1rem;
+// $input-font-size: $default-font-size;
 
-// MODAL
-$modal-overlay-background-color: rgba(0, 0, 0, 0.5);
-$modal-content-background-color: $color-white;
-$modal-content-padding: 2rem;
-$modal-close-button-size: 2rem;
-$modal-close-button-color: $color-grey-dark-1;
-$modal-close-button-hover-color: $color-grey-dark-2;
+// // NAVIGATION
+// $nav-height: 6rem;
+// $nav-background-color: $color-primary;
+// $nav-text-color: $color-white;
+// $nav-link-padding: 1rem;
+// $nav-link-font-size: $default-font-size;
+// $nav-link-font-weight: $font-weight-bold;
+
+// // CARDS
+// $card-border-radius: $default-radius;
+// $card-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+// $card-padding: 2rem;
+// $card-title-font-size: $large-font-size;
+// $card-title-font-weight: $font-weight-bold;
+// $card-text-color: $color-grey-dark-1;
+
+// // MODAL
+// $modal-overlay-background-color: rgba(0, 0, 0, 0.5);
+// $modal-content-background-color: $color-white;
+// $modal-content-padding: 2rem;
+// $modal-close-button-size: 2rem;
+// $modal-close-button-color: $color-grey-dark-1;
+// $modal-close-button-hover-color: $color-grey-dark-2;

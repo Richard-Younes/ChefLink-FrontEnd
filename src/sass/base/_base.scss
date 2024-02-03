@@ -19,6 +19,11 @@ body {
 }
 
 ::selection {
-	background-color: $color-primary;
+	background-color: $color-secondary;
 	color: $color-white;
+}
+
+*:focus {
+	outline: none;
+	box-shadow: 0 0 0 0.2rem $color-secondary;
 }
