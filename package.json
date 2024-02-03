@@ -2,6 +2,7 @@
 	"name": "cheflink-frontend",
 	"version": "1.0.0",
 	"description": "Cheflink connect users with freelancing chef and homemade cooking",
+	"main": "login.html",
 	"scripts": {
 		"start": "parcel ./src/html/login.html",
 		"build": "parcel build ./src/html/login.html",
