@@ -1,4 +1,4 @@
-6341
+6333
 53C:\Users\richo\Desktop\ChefLink-FrontEnd\package.json133514710474861037 0
 98C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\csso\cjs\restructure\4-restructShorthand.cjs133514702102381454 0
 102C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\optimizer-htmlnano\node_modules\css-tree133514702112044745 1
@@ -8,12 +8,6 @@
 108C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@swc\helpers\_\_skip_first_generator_next\package.json133514702114507937 0
 62C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\svgo\bin133514702100993682 1
 48C:\Users\richo\Desktop\ChefLink-FrontEnd\.vscode133513394304569541 1
-94C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\csso\node_modules\css-tree\lib\generator133514702113742701 1
-85C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\caniuse-lite\data\regions\AL.js133514702104931325 0
-78C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\abortcontroller-polyfill133514702104621323 1
-95C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@swc\helpers\esm\_wrap_async_generator.js133514702112711621 0
-63C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\is-number133514702101385765 1
-45C:\Users\richo\Desktop\ChefLink-FrontEnd\dist133514710569846049 1
 94C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\caniuse-lite\data\features\matchmedia.js133514702116973163 0
 119C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\optimizer-htmlnano\node_modules\csso\lib\replace\index.js133514702107275225 0
 101C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\csso\node_modules\css-tree\cjs\utils\string.cjs133514702111153056 0
@@ -331,6 +325,11 @@
 103C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\caniuse-lite\data\features\css-scroll-behavior.js133514702113491451 0
 102C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@swc\helpers\_\_array_like_to_array\package.json133514702112913090 0
 86C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@swc\helpers\_\_write_only_error133514702114910618 1
+94C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\csso\node_modules\css-tree\lib\generator133514702113742701 1
+85C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\caniuse-lite\data\regions\AL.js133514702104931325 0
+78C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\abortcontroller-polyfill133514702104621323 1
+95C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@swc\helpers\esm\_wrap_async_generator.js133514702112711621 0
+63C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\is-number133514702101385765 1
 116C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\posthtml\node_modules\posthtml-parser\dist\location-tracker.js133514702101731267 0
 92C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\json-parse-even-better-errors\index.js133514702099973886 0
 125C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\optimizer-htmlnano\node_modules\svgo\lib\svgo\css-class-list.js133514702106211570 0
@@ -678,7 +677,6 @@
 98C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\caniuse-lite\data\features\css-page-break.js133514702113251464 0
 112C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\tokenizer133514702111783318 1
 75C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\mdn-data\css\index.js133514702101261720 0
-67C:\Users\richo\Desktop\ChefLink-FrontEnd\dist\login.e82f28a0.js.map133514710569835973 0
 63C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\path-type133514702101892542 1
 102C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\css-select\node_modules\domhandler\lib\node.d.ts133514702105041316 0
 125C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\optimizer-htmlnano\node_modules\css-select\lib\pseudo-selectors133514702107347017 1
@@ -1141,10 +1139,10 @@
 107C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\posthtml\node_modules\posthtml-parser\dist\index.d.ts133514702102941658 0
 99C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@swc\helpers\_\_get_prototype_of\package.json133514702113972700 0
 66C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\svgo\plugins133514702110733851 1
+94C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\csso\node_modules\css-tree\cjs\generator133514702111314437 1
+102C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@swc\helpers\esm\_initializer_define_property.js133514702112034761 0
 117C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\optimizer-svgo\node_modules\css-tree\lib\common\List.js133514702110236162 0
 70C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\tslib\tslib.html133514702100443801 0
-102C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@swc\helpers\esm\_initializer_define_property.js133514702112034761 0
-94C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\csso\node_modules\css-tree\cjs\generator133514702111314437 1
 82C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\semver\classes\comparator.js133514702102605510 0
 78C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\nullthrows\nullthrows.js133514702101501278 0
 83C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\svgo\plugins\convertColors.js133514702108222305 0
@@ -2296,6 +2294,7 @@
 90C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\msgpackr\dist\unpack-no-eval.cjs.map133514702108773845 0
 74C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@babel\highlight\lib133514702101591259 1
 77C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\micromatch\package.json133514702101023673 0
+63C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\lmdb\dist133514702112064750 1
 70C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\dotenv\README.md133514702102154518 0
 70C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\mdn-data\LICENSE133514702099973886 0
 73C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\htmlparser2\LICENSE133514702100003877 0
@@ -2335,7 +2334,6 @@
 62C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\lmdb\bin133514702111742604 1
 70C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\lmdb\binding.gyp133514702111123052 0
 71C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\lmdb\dependencies133514702111544423 1
-63C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\lmdb\dist133514702112064750 1
 79C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\chokidar\lib\constants.js133514702100665259 0
 67C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\lmdb\index.js133514702111792598 0
 77C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\cli-progress\lib\eta.js133514702102645503 0
@@ -3478,7 +3476,6 @@
 78C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\csso\cjs\clean\utils.cjs133514702107534027 0
 99C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\transformer-raw\lib\RawTransformer.js133514702100675282 0
 102C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\caniuse-lite\data\features\screen-orientation.js133514702118463776 0
-64C:\Users\richo\Desktop\ChefLink-FrontEnd\dist\Logo.d8aa633a.webp133514710569346065 0
 83C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\csso\cjs\clean\WhiteSpace.cjs133514702108052275 0
 80C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\graph\src\types.js133514702105742634 0
 93C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\reporter-cli\src\phaseReport.js133514702104443937 0
@@ -5235,7 +5232,6 @@
 90C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\utils\test\sourcemap.test.js133514702109894310 0
 89C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\utils\test\throttle.test.js133514702110154299 0
 98C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\utils\test\input\sourcemap\inline.js133514702108651802 0
-56C:\Users\richo\Desktop\ChefLink-FrontEnd\dist\login.html133514710569666002 0
 93C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@babel\code-frame\node_modules\has-flag133514702101461255 1
 110C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\utils\test\input\sourcemap\referenced-min.js.map133514702111254448 0
 87C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\@parcel\runtime-react-refresh\lib133514702100563802 1
@@ -6335,8 +6331,4 @@
 69C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\.bin\terser.ps1133514702121562406 0
 85C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\.bin\update-browserslist-db.cmd133514702121572376 0
 85C:\Users\richo\Desktop\ChefLink-FrontEnd\node_modules\.bin\update-browserslist-db.ps1133514702121572376 0
-79C:\Users\richo\Desktop\ChefLink-FrontEnd\dist\Login-Image-cropped.c334c5fe.webp133514710569835973 0
-63C:\Users\richo\Desktop\ChefLink-FrontEnd\dist\login.e82f28a0.js133514710569795960 0
-64C:\Users\richo\Desktop\ChefLink-FrontEnd\dist\login.f7626f62.css133514710569386048 0
-68C:\Users\richo\Desktop\ChefLink-FrontEnd\dist\login.f7626f62.css.map133514710569446029 0
 62C:\Users\richo\Desktop\ChefLink-FrontEnd\.vscode\settings.json133513416872793439 0

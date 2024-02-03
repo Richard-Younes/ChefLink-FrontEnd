@@ -8,8 +8,10 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+
 		<link rel="icon" href="../img/Logo.webp" type="image/webp" />
 		<link rel="stylesheet" href="../sass/main.scss" />
+		<script type="module" src="../js/script.js"></script>
 		<title>ChefLink - Homemade cuisine</title>
 	</head>
 	<body>
@@ -18,11 +20,11 @@
 				<img class="logo form__logo u-margin-bottom-small" src="../img/Logo.webp" alt="ChefLink" />
 				<div class="form__input u-margin-bottom-small">
 					<label class="form__input-label" for="email">Username</label>
-					<input class="form__input-box" type="email" id="email" name="email" />
+					<input class="form__input-box" type="email" id="email" name="email" required />
 				</div>
 				<div class="form__input u-margin-bottom-small">
 					<label class="form__input-label" for="password">Password</label>
-					<input class="form__input-box u-margin-bottom-ss" type="password" id="password" name="password" />
+					<input class="form__input-box u-margin-bottom-ss" type="password" id="password" name="password" required />
 					<br />
 					<a href="#" class="link">Forgot password?</a>
 				</div>
