@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
+
+    <link rel="icon" href="../img/Logo.webp" type="image/webp" />
+    <link rel="stylesheet" href="../sass/main.scss" />
+    <script type="module" src="../js/script.js"></script>
+    <title>ChefLink - Homemade cuisine</title>
+</head>
+<body>
+    <main class="signup">
+        <form class="form signup__form" action="#" onsubmit="return validateForm()">
+            <img class="logo form__logo u-margin-bottom-small" src="../img/Logo.webp" alt="ChefLink" />
+            <div class="form__input u-margin-bottom-small">
+                <label class="form__input-label" for="firstName">FirstName</label>
+                <input class="form__input-box" type="text" id="firstName" name="firstName" required />
+            </div>
+            <div class="form__input u-margin-bottom-small">
+                <label class="form__input-label" for="lastName">LastName</label>
+                <input class="form__input-box" type="text" id="lastName" name="lastName" required />
+            </div>
+            <div class="form__input u-margin-bottom-small">
+                <label class="form__input-label" for="username">Username</label>
+                <input class="form__input-box" type="text" id="username" name="username" required />
+            </div>
+            <div class="form__input u-margin-bottom-small">
+                <label class="form__input-label" for="email">Email</label>
+                <input class="form__input-box" type="email" id="email" name="email" required />
+            </div>
+            <div class="form__input u-margin-bottom-small">
+                <label class="form__input-label" for="password">Password</label>
+                <input class="form__input-box u-margin-bottom-ss" type="password" id="password" name="password" required />
+            </div>
+            <div class="form__input u-margin-bottom-small">
+                <label class="form__input-label" for="password">Verify Password</label>
+                <input class="form__input-box u-margin-bottom-ss" type="password" id="password" name="password" required />
+            </div>
+            <button class="btn btn--orange btn--animated u-margin-bottom-ss" type="submit">SignUp</button>
+            <p class="form__text">Already have an account? <a class="link" href="#">Login</a></p>
+        </form>
+
+        <script>
+            function validateForm() {
+                var firstName = document.getElementById('firstName').value;
+                var lastName = document.getElementById('lastName').value;
+                var username = document.getElementById('username').value;
+                var email = document.getElementById('email').value;
+                var password = document.getElementById('password').value;
+
+                
+                if (firstName.trim() === '' || lastName.trim() === '' || username.trim() === '' || email.trim() === '' || password.trim() === '') {
+                    alert('Please fill in all fields.');
+                    return false;
+                }
+
+                
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return false;
+                }
+
+                
+                if (password.length < 8) {
+                    alert('Password must be at least 8 characters long.');
+                    return false;
+                }
+
+                return true; 
+            }
+        </script>
+    </main>
+</body>
+</html>
