@@ -1,0 +1,30 @@
+/** @format */
+
+// Abstracts
+@import './abstracts/_functions.scss';
+@import './abstracts/_mixins.scss';
+@import './abstracts/_variables.scss';
+
+// Base
+@import './base/_animations.scss';
+@import './base/_base.scss';
+@import './base/_typography.scss';
+@import './base/_utilities.scss';
+
+// Components
+@import './components/_buttons.scss';
+@import './components/_popup.scss';
+@import './components/_links.scss';
+@import './components/_form.scss';
+@import './components/_foodContainer.scss';
+
+// Layout
+@import './layout/_flexbox.scss';
+@import './layout/_footer.scss';
+@import './layout/_grid.scss';
+@import './layout/_header.scss';
+@import './layout/_navigation.scss';
+
+// Pages
+@import './pages/_login.scss';
+@import './pages/_home.scss';

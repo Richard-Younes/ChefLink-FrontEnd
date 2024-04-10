@@ -1,0 +1,15 @@
+/** @format */
+
+body {
+	font-family: $default-font;
+	font-weight: $font-weight-normal;
+	line-height: 1.7;
+	color: $color-grey-dark-1;
+	font-size: $default-font-size;
+}
+
+.error__message {
+	color: #ff0000; /* Red color for error messages */
+	font-size: 14px;
+	margin-top: 8px;
+}

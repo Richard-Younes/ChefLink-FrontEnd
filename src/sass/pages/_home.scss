@@ -1,0 +1,111 @@
+/** @format */
+
+.home {
+	min-width: 100vw;
+	display: grid;
+	grid-template-columns: 15% 85%;
+	gap: 1rem;
+	overflow-x: hidden;
+
+	&__content {
+		max-width: 100%;
+		padding-top: 2rem;
+		padding-left: 2rem;
+
+		grid-column: 2/3;
+
+		&--top {
+			display: grid;
+			grid-template-columns: 1rem 4fr 14rem;
+			justify-content: center;
+			align-items: center;
+			justify-items: center;
+			text-align: center;
+		}
+	}
+}
+
+// The following SCSS are used for the search box on the top side of the Home page
+
+.searchbar-form {
+	width: fit-content;
+	height: fit-content;
+	grid-column: 2/3;
+
+	position: relative;
+
+	&__input {
+		font-size: 1.6rem;
+		width: 40rem;
+		border-radius: 100px;
+
+		padding: 0.7rem 2rem;
+
+		background-color: #f4f2f2;
+		border: none;
+
+		font-weight: 500;
+
+		color: $color-grey-dark-1;
+
+		transition: all 0.2s;
+
+		&:focus {
+			width: 45rem;
+		}
+	}
+}
+
+.search-icon {
+	font-size: 1.5rem;
+	color: #bbbbbb;
+	margin-left: -2.2rem;
+}
+
+.home__btn {
+	margin-left: -2rem;
+}
+
+.welcome-notice {
+	font-size: 1.8rem;
+	font-weight: 700;
+}
+
+.home__date {
+	display: block;
+	font-weight: 500;
+	font-size: 1.3rem;
+	color: #999999;
+	line-height: 0.4;
+	margin-bottom: 4rem;
+}
+
+.categories-container {
+	display: flex;
+	gap: 1rem;
+	margin-bottom: 2rem;
+}
+
+.category__btn {
+	padding: 0.6rem 2rem;
+	font-size: 1.4rem;
+	color: #333;
+	transition: all 0.2s;
+
+	&:hover,
+	&:focus {
+		background-image: linear-gradient(
+			to bottom,
+			$color-primary,
+			$color-primary-light
+		);
+	}
+
+	&-active {
+		background-image: linear-gradient(
+			to bottom,
+			$color-primary,
+			$color-primary-light
+		);
+	}
+}

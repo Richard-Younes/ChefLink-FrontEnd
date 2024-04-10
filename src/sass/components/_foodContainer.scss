@@ -1,0 +1,113 @@
+/** @format */
+
+.category-food-info-container {
+	margin-bottom: 2rem;
+	&__title {
+		font-size: 2rem;
+	}
+
+	&__container {
+		width: 99%;
+		background-color: #eee;
+		border-radius: 2rem;
+
+		overflow-x: hidden;
+		display: flex;
+		align-items: center;
+	}
+	&__clipper {
+		width: 95%;
+		padding: 2rem 3rem;
+
+		overflow-x: hidden;
+		display: flex;
+		align-items: center;
+		gap: 4rem;
+
+		flex-grow: 0;
+		flex-shrink: 0;
+	}
+}
+.arrow-right-icon {
+	font-size: 6rem;
+	color: #666;
+	cursor: pointer;
+}
+.food-container {
+	width: 20rem;
+	border-radius: 20px;
+	overflow: hidden;
+	flex-grow: 0;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 1rem;
+
+	background-color: white;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+	&__image {
+		width: 100%;
+		max-height: 12rem;
+		object-fit: cover;
+		object-position: bottom;
+	}
+
+	&__header {
+		display: flex;
+		padding-left: 1rem;
+		padding-right: 0.5rem;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__name {
+		font-weight: 700;
+	}
+
+	&__bookmark-icon {
+		font-size: $large-font-size;
+		cursor: pointer;
+		padding-top: 0.5rem;
+	}
+
+	&__info {
+		display: flex;
+		padding-left: 1rem;
+		align-items: center;
+		gap: 0.4rem;
+		font-size: 1.6rem;
+		margin-bottom: 0.5rem;
+	}
+
+	&__rating {
+		border-right: 1px solid;
+		padding-right: 0.5rem;
+		font-size: $small-font-size;
+	}
+
+	&__time {
+		display: flex;
+		align-items: center;
+		color: $color-grey-dark-2;
+		gap: 0.2rem;
+
+		&-text {
+			font-size: $small-font-size;
+		}
+	}
+
+	&__footer {
+		display: flex;
+		padding-left: 1rem;
+		padding-right: 0.5rem;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	&__button:hover,
+	&__button:focus {
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		transform: none;
+	}
+}
