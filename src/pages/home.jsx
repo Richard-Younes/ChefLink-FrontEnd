@@ -1,56 +1,10 @@
 /** @format */
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import burgerImage from '../assets/Cuisine/burger1.jpg';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
 import { Link } from 'react-router-dom';
-const recipes = [
-	{
-		image: '../assets/Cuisine/burger1.jpg',
-		name: 'Burger1',
-		price: '$20',
-		rating: '4.8',
-	},
-
-	{
-		image: '../assets/Cuisine/burger2.jpg',
-		name: 'Burger2',
-		price: '$15',
-		rating: '4.2',
-	},
-	{
-		image: '../assets/Cuisine/deser1.jpg',
-		name: 'Desert1',
-		price: '$17',
-		rating: '4.6',
-	},
-	{
-		image: '../assets/Cuisine/pizza1.jpg',
-		name: 'Pizza',
-		price: '$12',
-		rating: '3.5',
-	},
-
-	{
-		image: '../assets/Cuisine/salad1.jpg',
-		name: 'Salad1',
-		price: '$8',
-		rating: '3.8',
-	},
-	{
-		image: '../assets/Cuisine/salad2.jpg',
-		name: 'Salad1',
-		price: '$10',
-		rating: '3.9',
-	},
-	{
-		image: '../assets/Cuisine/salmon.jpg',
-		name: 'Salmon',
-		price: '$10',
-		rating: '4.0',
-	},
-];
 
 const categories = [
 	{ name: 'All', key: 1 },
