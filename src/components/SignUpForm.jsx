@@ -1,10 +1,80 @@
 /** @format */
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './SignUpForm.module.css';
-import { Link } from 'react-router-dom';
 
 function SignUpForm() {
+	const navigate = useNavigate();
+
+	const [formData, setFormData] = useState({
+		username: '',
+		password: '',
+		verifyPassword: '',
+		email: '',
+		phone_nb: '',
+		gender: '',
+		first_name: '',
+		last_name: '',
+		date_of_birth: '',
+		pp_url: '/profile/test.jpg',
+	});
+
+	const [passwordVerified, setPasswordVerified] = useState(true);
+
+	function handleSubmit(e) {
+		e.preventDefault();
+		if (formData.password === formData.verifyPassword) {
+			setPasswordVerified(true);
+		} else {
+			setPasswordVerified(false);
+		}
+
+		if (!passwordVerified) return;
+
+		const sentData = {
+			username: formData.username,
+			password: formData.password,
+			email: formData.email,
+			phone_nb: formData.phone_nb,
+			gender: formData.gender,
+			first_name: formData.first_name,
+			last_name: formData.last_name,
+			date_of_birth: formData.date_of_birth,
+			pp_url: formData.pp_url,
+		};
+		console.log(sentData);
+
+		async function handleSignUp() {
+			try {
+				const res = await fetch(
+					'https://cheflink-gateway.onrender.com/auth/register',
+					{
+						method: 'PUT',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify(sentData),
+					}
+				);
+
+				if (!res.ok) {
+					const data = await res.json();
+					throw new Error(data.error);
+				}
+				console.log('User Created');
+				navigate('/login');
+			} catch (err) {
+				console.error(`💥💥 Error 💥💥: ${err}`);
+			}
+		}
+		handleSignUp();
+	}
+
+	function handleChange(e, changedInput) {
+		const { value } = e.target;
+		setFormData({ ...formData, [changedInput]: value });
+	}
+
 	return (
-		<form className={styles.form}>
+		<form className={styles.form} onSubmit={handleSubmit}>
 			<img src='public/logo.webp' alt='logo' className={styles.logo} />
 
 			<div className={styles.inputContainer}>
@@ -14,6 +84,7 @@ function SignUpForm() {
 					FirstName
 				</label>
 				<input
+					onChange={e => handleChange(e, 'first_name')}
 					required
 					type='text'
 					id='firstName'
@@ -26,6 +97,7 @@ function SignUpForm() {
 					LastName
 				</label>
 				<input
+					onChange={e => handleChange(e, 'last_name')}
 					required
 					type='text'
 					id='lastName'
@@ -39,6 +111,7 @@ function SignUpForm() {
 					UserName
 				</label>
 				<input
+					onChange={e => handleChange(e, 'username')}
 					required
 					type='text'
 					id='userName'
@@ -51,6 +124,7 @@ function SignUpForm() {
 					PhoneNumber
 				</label>
 				<input
+					onChange={e => handleChange(e, 'phone_nb')}
 					required
 					type='tel'
 					id='phoneNumber'
@@ -63,7 +137,14 @@ function SignUpForm() {
 						htmlFor='male'
 						className={`${styles.label} ${styles.customRadio}`}>
 						<span className={styles.radioLabel}>Male</span>
-						<input required type='radio' name='gender' id='male' />
+						<input
+							onChange={e => handleChange(e, 'gender')}
+							required
+							type='radio'
+							name='gender'
+							id='male'
+							value='Male'
+						/>
 						<span className={styles.radio}></span>
 					</label>
 
@@ -71,7 +152,14 @@ function SignUpForm() {
 						htmlFor='female'
 						className={`${styles.label} ${styles.customRadio}`}>
 						<span className={styles.radioLabel}>Female</span>
-						<input required type='radio' name='gender' id='female' />
+						<input
+							onChange={e => handleChange(e, 'gender')}
+							required
+							type='radio'
+							name='gender'
+							id='female'
+							value='Female'
+						/>
 						<span className={styles.radio}></span>
 					</label>
 				</div>
@@ -81,6 +169,7 @@ function SignUpForm() {
 					Date of Birth
 				</label>
 				<input
+					onChange={e => handleChange(e, 'date_of_birth')}
 					required
 					type='date'
 					id='dateOfBirth'
@@ -91,51 +180,45 @@ function SignUpForm() {
 					Email
 				</label>
 				<input
+					onChange={e => handleChange(e, 'email')}
 					required
 					type='email'
 					id='email'
 					className={`${styles.input} ${styles.row8}`}
 					placeholder='luidovic.zgheib@lau.edu'
 				/>
-				<label htmlFor='password' className={`${styles.label} ${styles.row9}`}>
-					Password
+				<label
+					htmlFor='password'
+					className={`${styles.label} ${styles.row9} ${
+						passwordVerified ? '' : styles.wrongPassword
+					}`}>
+					{passwordVerified ? 'Password' : '*Passwords Do Not Match'}
 				</label>
 				<input
+					onChange={e => handleChange(e, 'password')}
 					required
 					type='password'
 					id='password'
-					className={`${styles.input} ${styles.row10}`}
+					className={`${styles.input} ${styles.row10} `}
 					placeholder='passowrd1234'
 				/>
 
 				<label
 					htmlFor='verifyPassword'
-					className={`${styles.label} ${styles.row11}`}>
-					Verify Password
+					className={`${styles.label} ${styles.row11} ${
+						passwordVerified ? '' : styles.wrongPassword
+					}`}>
+					{passwordVerified ? 'Verify Password' : '*Passwords Do Not Match'}
 				</label>
 				<input
+					onChange={e => handleChange(e, 'verifyPassword')}
 					required
 					type='password'
 					id='verifyPassword'
 					className={styles.input + ' ' + styles.row12}
 					placeholder='passowrd1234'
 				/>
-				<div className={styles.row13}>
-					<label
-						htmlFor='user'
-						className={`${styles.label} ${styles.customRadio}`}>
-						<span className={styles.radioLabel}>user</span>
-						<input required type='radio' id='user' name='userType' />
-						<span className={styles.radio}></span>
-					</label>
-					<label
-						htmlFor='chef'
-						className={`${styles.label} ${styles.customRadio}`}>
-						<span className={styles.radioLabel}>chef</span>
-						<input required type='radio' id='chef' name='userType' />
-						<span className={styles.radio}></span>
-					</label>
-				</div>
+
 				<button
 					type='submit'
 					className={`${styles.button} ${styles.row14} btn btn__login btn--orange btn--animated u-margin-bottom-ss`}>

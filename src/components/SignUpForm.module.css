@@ -17,8 +17,8 @@
 }
 
 .logo {
-	width: 6rem;
-	margin-bottom: 2rem;
+	width: 8rem;
+	margin-bottom: 1rem;
 }
 
 .inputContainer {
@@ -241,5 +241,9 @@ input:checked ~ .radio::after {
 	cursor: pointer;
 	align-self: center;
 	justify-self: center;
-	margin-top: -1rem;
+}
+
+.wrongPassword {
+	color: red;
+	margin-right: 25%;
 }
