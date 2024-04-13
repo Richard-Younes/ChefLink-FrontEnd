@@ -57,7 +57,8 @@ function Form({ setUser }) {
 				console.log(res);
 				const data = await res.json();
 				console.log(data);
-				console.log(`Cookies:${getCookie('csrf_access_token')}`);
+
+				console.log(document.cookie);
 			} catch (error) {
 				console.error(`AJAX error 💥💥:${error}`);
 			}
