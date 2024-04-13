@@ -4,7 +4,7 @@ import burgerImage from '../assets/Cuisine/burger1.jpg';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const categories = [
 	{ name: 'All', key: 1 },
@@ -14,16 +14,16 @@ const categories = [
 	{ name: 'Pasta', key: 5 },
 	{ name: 'Desert', key: 6 },
 ];
-export default function Home() {
+export default function Home({ user }) {
+	const navigate = useNavigate();
+
 	return (
 		<div className='home allow-select'>
-			<Header />
+			<Header user={user} />
 			<div className='home__content'>
-				<HomeHead />
-				<WelcomeDate />
-
+				<HomeHead user={user} navigate={navigate} />
+				<WelcomeDate user={user} />
 				<Categories />
-
 				<CategoryFoodInfo />
 				<CategoryFoodInfo />
 				<CategoryFoodInfo />
@@ -37,7 +37,31 @@ export default function Home() {
 	);
 }
 
-function HomeHead() {
+function HomeHead({ user, navigate }) {
+	function handleLogOut() {
+		async function logOut() {
+			try {
+				const res = await fetch(
+					'https://cheflink-gateway.onrender.com/auth/logout',
+					{ credentials: 'include' }
+				);
+				if (!res.ok) {
+					const data = await res.json();
+					throw new Error(`${data.error}`);
+				}
+
+				// Logout successful
+
+				localStorage.removeItem('user');
+
+				navigate('/login');
+			} catch (error) {
+				console.error(`LogOut error 💥💥:${error}`);
+			}
+		}
+		logOut();
+	}
+
 	return (
 		<div className='home__content--top'>
 			<form className='searchbar-form'>
@@ -50,14 +74,20 @@ function HomeHead() {
 					<ion-icon name='search-sharp'></ion-icon>
 				</span>
 			</form>
-			<Link to='signup' className='btn btn--green-small home__btn'>
-				Sign In
-			</Link>
+			{user === 'Guest' ? (
+				<Link to='login' className='btn btn--green-small home__btn'>
+					Login
+				</Link>
+			) : (
+				<a className='btn btn--red-small home__btn' onClick={handleLogOut}>
+					Logout
+				</a>
+			)}
 		</div>
 	);
 }
 
-function WelcomeDate() {
+function WelcomeDate({ user }) {
 	// eslint-disable-next-line no-unused-vars
 	const [currentDate, setCurrentDate] = useState(getDate());
 
@@ -75,7 +105,7 @@ function WelcomeDate() {
 	return (
 		<div>
 			<p className='welcome-notice'>
-				Welcome, Guest <span className='home__date'>{currentDate}</span>
+				Welcome, {user} <span className='home__date'>{currentDate}</span>
 			</p>
 		</div>
 	);

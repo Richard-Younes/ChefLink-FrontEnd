@@ -1,12 +1,12 @@
 /** @format */
 import Logo from '../assets/Logo.webp';
 import { useNavigate } from 'react-router-dom';
-export default function Header() {
+export default function Header({ user }) {
 	return (
 		<div className='header__container'>
 			<div className='header'>
 				<LogoHeader />
-				<HeaderPagesList />
+				<HeaderPagesList user={user} />
 			</div>
 		</div>
 	);
@@ -34,13 +34,13 @@ export function LogoHeader() {
 	);
 }
 
-function HeaderPagesList() {
+function HeaderPagesList({ user }) {
 	return (
 		<div className='page__list'>
 			<div className='profile-pic'>
 				<ion-icon name='person-circle'></ion-icon>
 			</div>
-			<p className='page__list-username'>Guest</p>
+			<p className='page__list-username'>{user}</p>
 			<p className='page__list-elements active-page'>Home</p>
 			<p className='page__list-elements'>Bookmark</p>
 			<p className='page__list-elements'>Cart</p>

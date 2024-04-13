@@ -1,36 +1,68 @@
 /** @format */
 import { useState } from 'react';
 import logo from '../assets/Logo.webp';
-import AJAX from './auth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-export default function Login() {
+function getCookie(cname) {
+	let name = cname + '=';
+	let decodedCookie = decodeURIComponent(document.cookie);
+	let ca = decodedCookie.split(';');
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return '';
+}
+
+export default function Login({ setUser }) {
 	return (
 		<main className='login'>
-			<Form />
+			<Form setUser={setUser} />
 		</main>
 	);
 }
 
-function Form() {
+function Form({ setUser }) {
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	const [response, setResponse] = useState(true);
 
-	async function handleSubmit(e) {
+	const navigate = useNavigate();
+
+	function handleSubmit(e) {
 		e.preventDefault();
-		if (!userName || !password) return;
 
-		const res = await AJAX('https://cheflink-gateway.onrender.com/auth/login', {
-			username: userName,
-			password: password,
-		});
+		const sendData = { username: userName, password: password };
 
-		setResponse(() => res);
-		if (res) {
-			window.location.href = '/';
+		async function Login() {
+			try {
+				const res = await fetch(
+					'https://cheflink-gateway.onrender.com/auth/login',
+					{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						credentials: 'include',
+
+						body: JSON.stringify(sendData),
+					}
+				);
+
+				console.log(res);
+				const data = await res.json();
+				console.log(data);
+				console.log(`Cookies:${getCookie('csrf_access_token')}`);
+			} catch (error) {
+				console.error(`AJAX error 💥💥:${error}`);
+			}
 		}
-		console.log('Response:', res);
+		Login();
 	}
 
 	return (

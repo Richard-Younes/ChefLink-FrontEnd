@@ -89,4 +89,24 @@
 			transition: all 0.4s;
 		}
 	}
+
+	&--red-small {
+		background-color: $color-error;
+		padding: 0.8rem 2rem !important;
+		color: $color-grey-dark-1;
+
+		&::after {
+			content: '';
+			display: inline-block;
+			height: 100%;
+			width: 100%;
+			border-radius: 10rem;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			background-image: linear-gradient(to bottom, $color-error, $color-error);
+			transition: all 0.4s;
+		}
+	}
 }
