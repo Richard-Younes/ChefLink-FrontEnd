@@ -42,7 +42,7 @@ function HomeHead({ user, navigate }) {
 		async function logOut() {
 			try {
 				const res = await fetch(
-					'https://cheflink-gateway.onrender.com/auth/logout',
+					'https://flask-cheflink.onrender.com/auth/logout',
 					{ credentials: 'include' }
 				);
 				if (!res.ok) {

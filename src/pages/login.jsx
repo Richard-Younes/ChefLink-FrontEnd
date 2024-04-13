@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import logo from '../assets/Logo.webp';
 import { Link, useNavigate } from 'react-router-dom';
+import { url } from '../values';
 
 function getCookie(cname) {
 	let name = cname + '=';
@@ -41,28 +42,30 @@ function Form({ setUser }) {
 
 		async function Login() {
 			try {
-				const res = await fetch(
-					'https://cheflink-gateway.onrender.com/auth/login',
-					{
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						credentials: 'include',
+				const res = await fetch(`${url}auth/login`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					credentials: 'include',
 
-						body: JSON.stringify(sendData),
-					}
-				);
+					body: JSON.stringify(sendData),
+				});
+				setResponse(res.ok);
 
-				console.log(res);
 				const data = await res.json();
-				console.log(data);
-
-				console.log(document.cookie);
+				if (!res.ok) {
+					throw new Error(`${data.error}`);
+				}
+				setUser(userName);
+				localStorage.setItem('user', userName);
+				navigate('/');
+				console.log(`Login: ${data.status}`);
 			} catch (error) {
-				console.error(`AJAX error 💥💥:${error}`);
+				console.error(`Log in error 💥💥:${error}`);
 			}
 		}
+
 		Login();
 	}
 
