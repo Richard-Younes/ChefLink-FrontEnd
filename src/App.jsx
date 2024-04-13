@@ -1,5 +1,5 @@
 /** @format */
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/login';
 import Home from './pages/home';
 import SignUp from './pages/SignUp';
@@ -13,8 +13,13 @@ export default function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route index element={<Home user={user} />} />
-				<Route path='/login' element={<Login setUser={setUser} />} />
+				<Route index element={<Home user={user} setUser={setUser} />} />
+				<Route
+					path='/login'
+					element={
+						user === 'Guest' ? <Login setUser={setUser} /> : <Navigate to='/' />
+					}
+				/>
 				<Route path='/signup' element={<SignUp />} />
 			</Routes>
 		</BrowserRouter>

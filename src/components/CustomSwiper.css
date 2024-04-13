@@ -1,0 +1,14 @@
+/** @format */
+:root {
+	--swiper-navigation-sides-offset: 15px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+	color: #333 !important;
+	user-select: none !important;
+}
+
+.swiper-button-next:focus,
+.swiper-button-prev:focus {
+	box-shadow: none !important;
+}

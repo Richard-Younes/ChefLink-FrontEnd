@@ -1,5 +1,9 @@
 /** @format */
-
+.swiper {
+	width: 100%;
+	padding: 2rem 6rem;
+	overflow-x: hidden;
+}
 .category-food-info-container {
 	margin-bottom: 2rem;
 	&__title {
@@ -10,29 +14,9 @@
 		width: 99%;
 		background-color: #eee;
 		border-radius: 2rem;
-
-		overflow-x: hidden;
-		display: flex;
-		align-items: center;
-	}
-	&__clipper {
-		width: 95%;
-		padding: 2rem 3rem;
-
-		overflow-x: hidden;
-		display: flex;
-		align-items: center;
-		gap: 4rem;
-
-		flex-grow: 0;
-		flex-shrink: 0;
 	}
 }
-.arrow-right-icon {
-	font-size: 6rem;
-	color: #666;
-	cursor: pointer;
-}
+
 .food-container {
 	width: 20rem;
 	border-radius: 20px;

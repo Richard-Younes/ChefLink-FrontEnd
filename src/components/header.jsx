@@ -1,5 +1,4 @@
 /** @format */
-import Logo from '../assets/Logo.webp';
 import { useNavigate } from 'react-router-dom';
 export default function Header({ user }) {
 	return (
@@ -22,7 +21,7 @@ export function LogoHeader() {
 	return (
 		<div className='header__logo-container'>
 			<img
-				src={Logo}
+				src='public/Logo.webp'
 				alt='Logo image'
 				className='header__logo-image'
 				onClick={handleClick}
