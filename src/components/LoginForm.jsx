@@ -2,10 +2,13 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { url } from '../values';
-function LoginForm({ setUser }) {
+import { useUser } from '../contexts/UserContext';
+function LoginForm() {
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	const [response, setResponse] = useState(true);
+
+	const { setUser } = useUser();
 
 	const navigate = useNavigate();
 
@@ -13,6 +16,28 @@ function LoginForm({ setUser }) {
 		e.preventDefault();
 
 		const sendData = { username: userName, password: password };
+		async function getUserProfile() {
+			try {
+				const res = await fetch(`${url}auth/get_profile`, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					credentials: 'include',
+				});
+
+				const data = await res.json();
+
+				if (!res.ok) {
+					throw new Error(data.error);
+				}
+				setUser(data.data.username);
+
+				navigate('/');
+			} catch (error) {
+				console.error(`Get user profile error 💥💥:${error}`);
+			}
+		}
 
 		async function Login() {
 			try {
@@ -28,12 +53,20 @@ function LoginForm({ setUser }) {
 				setResponse(res.ok);
 
 				const data = await res.json();
+
+				if (data.error === 'ALREADY_LOGGED_IN') {
+					getUserProfile();
+					return;
+				}
 				if (!res.ok) {
 					throw new Error(`${data.error}`);
 				}
-				setUser(userName);
-				localStorage.setItem('user', userName);
-				navigate('/');
+
+				if (userName) {
+					setUser(userName);
+					navigate('/');
+				}
+
 				console.log(`Login: ${data.status}`);
 			} catch (error) {
 				console.error(`Log in error 💥💥:${error}`);

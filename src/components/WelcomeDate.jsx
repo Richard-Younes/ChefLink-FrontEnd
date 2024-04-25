@@ -1,8 +1,11 @@
 /** @format */
 import { useState } from 'react';
-function WelcomeDate({ user }) {
+import { useUser } from '../contexts/UserContext';
+function WelcomeDate() {
 	// eslint-disable-next-line no-unused-vars
 	const [currentDate, setCurrentDate] = useState(getDate());
+
+	const { user } = useUser();
 
 	function getDate() {
 		const options = {

@@ -1,0 +1,61 @@
+/** @format */
+
+.profileImageContainer {
+	display: flex;
+	justify-content: center; /* Horizontally center the content */
+	align-items: center; /* Vertically center the content */
+	height: 8rem; /* Set the height of the container */
+	width: 8rem;
+	border: 1px solid #ccc; /* Optional: Add a border for visualization */
+	border-radius: 100%;
+	overflow: hidden; /* Hide the image overflow */
+	margin-bottom: 4rem;
+	cursor: pointer;
+}
+
+.profileImage {
+	max-width: 100%; /* Ensure the image does not exceed the container width */
+}
+
+.imageList {
+	list-style: none;
+}
+
+.imageList li {
+	display: inline-block;
+	font-size: 1.4rem;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.imageList li:hover {
+	color: #ffb900;
+}
+
+.imageList li label {
+	cursor: pointer;
+}
+
+/* For the popup of the profile image */
+:global(.popup-content) {
+	margin: auto;
+	background: rgb(255, 255, 255);
+	width: 50%;
+	padding: 5px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+	border-radius: 10px;
+}
+:global(.popup-arrow) {
+	color: rgb(255, 255, 255);
+}
+:global([role='tooltip'].popup-content) {
+	width: 10rem;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+}
+
+:global(.popup-overlay) {
+	background: rgba(0, 0, 0, 0.5);
+}
+:global([data-popup='tooltip'].popup-overlay) {
+	background: transparent;
+}

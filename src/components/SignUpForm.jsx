@@ -47,7 +47,7 @@ function SignUpForm() {
 		async function handleSignUp() {
 			try {
 				const res = await fetch(
-					'https://cheflink-gateway.onrender.com/auth/register',
+					'https://flask-cheflink.onrender.com/auth/register',
 					{
 						method: 'PUT',
 						headers: { 'Content-Type': 'application/json' },
@@ -56,6 +56,7 @@ function SignUpForm() {
 				);
 
 				if (!res.ok) {
+					console.log(res);
 					const data = await res.json();
 					throw new Error(data.error);
 				}

@@ -1,17 +1,20 @@
 /** @format */
 
 import { Link } from 'react-router-dom';
+import { url } from '../values';
+import { useUser } from '../contexts/UserContext';
 
 /** @format */
 
-function HomeHead({ user, navigate, setUser }) {
+function HomeHead({ navigate }) {
+	const { user, setUser } = useUser();
+
 	function handleLogOut() {
 		async function logOut() {
 			try {
-				const res = await fetch(
-					'https://flask-cheflink.onrender.com/auth/logout',
-					{ credentials: 'include' }
-				);
+				const res = await fetch(`${url}auth/logout`, {
+					credentials: 'include',
+				});
 				const data = await res.json();
 				if (!res.ok) {
 					throw new Error(`${data.error}`);
@@ -19,9 +22,7 @@ function HomeHead({ user, navigate, setUser }) {
 
 				// Logout successful
 				setUser('Guest');
-				localStorage.removeItem('user');
 				console.log(`Log Out: ${data.status}`);
-
 				navigate('/login');
 			} catch (error) {
 				console.error(`LogOut error 💥💥:${error}`);
