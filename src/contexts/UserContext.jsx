@@ -10,22 +10,27 @@ const UserContext = createContext();
 function UserProvider({ children }) {
 	const [user, setUser] = useState('Guest');
 
-	useEffect(function () {
-		async function fetchUser() {
-			try {
-				const response = await fetch(`${Base_URL}auth/get_profile`);
-				const data = await response.json();
+	useEffect(
+		function () {
+			async function fetchUser() {
+				try {
+					const response = await fetch(`${Base_URL}auth/get_profile`, {
+						credentials: 'include',
+					});
+					const data = await response.json();
 
-				if (data.data !== '') {
-					setUser(data.data?.username);
+					if (data.data !== '') {
+						setUser(data.data?.username);
+					}
+				} catch {
+					console.error('Failed to fetch USER');
 				}
-			} catch {
-				console.error('Failed to fetch USER');
 			}
-		}
 
-		fetchUser();
-	}, []);
+			fetchUser();
+		},
+		[user]
+	);
 
 	return (
 		<UserContext.Provider

@@ -31,7 +31,9 @@ function LoginForm() {
 				if (!res.ok) {
 					throw new Error(data.error);
 				}
-				setUser(data.data.username);
+				if (data.status) {
+					setUser(data.data.username);
+				}
 
 				navigate('/');
 			} catch (error) {
