@@ -28,7 +28,6 @@ function FoodInfoContainer({ item }) {
 						bookmarks.map(bookmark => {
 							if (bookmark === item.id_food) {
 								setIsBookmarked(true);
-								console.log(item.id_food, 'is bookmarked');
 							}
 						});
 					}
@@ -69,11 +68,9 @@ function FoodInfoContainer({ item }) {
 
 				if (data.msg === 'BOOKMARKED') {
 					setIsBookmarked(true);
-					console.log(item.id_food, 'is bookmarked');
 				}
 				if (data.msg === 'UNBOOKMARKED') {
 					setIsBookmarked(false);
-					console.log(item.id_food, 'is removed from bookmark');
 				}
 			} catch (error) {
 				console.error(`Error with adding/removing bookmark💥💥:${error}`);
@@ -93,8 +90,11 @@ function FoodInfoContainer({ item }) {
 			<div className='food-container__header'>
 				<p className='food-container__name'>{item.name}</p>
 				<div className='food-container__bookmark-icon' onClick={handleBookmark}>
-					<ion-icon
-						name={`bookmark${isBookmarked ? '' : '-outline'}`}></ion-icon>
+					{isBookmarked ? (
+						<ion-icon name='bookmark'></ion-icon>
+					) : (
+						<ion-icon name='bookmark-outline'></ion-icon>
+					)}
 				</div>
 			</div>
 
