@@ -1,16 +1,19 @@
 /** @format */
 import FoodInfoContainer from './FoodInfoContainer';
 import CustomSwiper from './CustomSwiper';
-const items = [1, 2, 3, 4, 5, 6, 7, 8];
 
-function CategoryFoodInfo() {
+function CategoryFoodInfo({ food = null }) {
+	if (!food) {
+		return null;
+	}
+
 	return (
 		<div className='category-food-info-container'>
-			<h2 className='category-food-info-container__title'>Top Rated🔥</h2>
+			<h2 className='category-food-info-container__title'>{food._id}</h2>
 			<div className='category-food-info-container__container'>
 				<CustomSwiper>
-					{items.map(item => (
-						<FoodInfoContainer key={item} />
+					{food.collections.map(item => (
+						<FoodInfoContainer key={item.id_food} item={item} />
 					))}
 				</CustomSwiper>
 			</div>

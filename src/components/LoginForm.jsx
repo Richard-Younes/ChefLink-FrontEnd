@@ -8,7 +8,7 @@ function LoginForm() {
 	const [password, setPassword] = useState('');
 	const [response, setResponse] = useState(true);
 
-	const { setUser } = useUser();
+	const { setUser, setIsLogged } = useUser();
 
 	const navigate = useNavigate();
 
@@ -58,6 +58,8 @@ function LoginForm() {
 
 				if (data.error === 'ALREADY_LOGGED_IN') {
 					getUserProfile();
+					setIsLogged(true);
+
 					return;
 				}
 				if (!res.ok) {
@@ -67,6 +69,7 @@ function LoginForm() {
 				if (userName) {
 					setUser(userName);
 					navigate('/');
+					setIsLogged(true);
 				}
 
 				console.log(`Login: ${data.status}`);

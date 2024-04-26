@@ -41,7 +41,7 @@ export function LogoHeader() {
 
 function HeaderPagesList() {
 	const [profileImage, setProfileImage] = useState(null);
-	const { user } = useUser();
+	const { user, isLogged } = useUser();
 
 	// This useEffect is used to get the Image URL as well as synchronise with uploading and deleting images
 	useEffect(() => {
@@ -150,26 +150,30 @@ function HeaderPagesList() {
 	return (
 		<div className='page__list'>
 			<div className='profile-pic'>
-				<Popup
-					trigger={displayImageJSX}
-					position='right center'
-					closeOnDocumentClick>
-					<ul className={styles.imageList}>
-						<li>
-							<label htmlFor='uploadImage'>Upload Image</label>
-							<input
-								type='file'
-								id='uploadImage'
-								style={{ display: 'none' }}
-								accept='image/*'
-								placeholder='Upload Image'
-								onChange={uploadImage}
-							/>
-						</li>
+				{!isLogged ? (
+					<ion-icon name='person-circle'></ion-icon>
+				) : (
+					<Popup
+						trigger={displayImageJSX}
+						position='right center'
+						closeOnDocumentClick>
+						<ul className={styles.imageList}>
+							<li>
+								<label htmlFor='uploadImage'>Upload Image</label>
+								<input
+									type='file'
+									id='uploadImage'
+									style={{ display: 'none' }}
+									accept='image/*'
+									placeholder='Upload Image'
+									onChange={uploadImage}
+								/>
+							</li>
 
-						<li onClick={deleteImage}>Delete Image</li>
-					</ul>
-				</Popup>
+							<li onClick={deleteImage}>Delete Image</li>
+						</ul>
+					</Popup>
+				)}
 			</div>
 			<p className='page__list-username'>{user}</p>
 			<p className='page__list-elements active-page'>Home</p>

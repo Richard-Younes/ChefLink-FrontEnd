@@ -7,6 +7,7 @@ import WelcomeDate from '../components/WelcomeDate';
 import Categories from '../components/Categories';
 import { useNavigate } from 'react-router-dom';
 import CategoryFoodInfo from '../components/CategoryFoodInfo';
+import Spinner from '../components/Spinner';
 
 import { url } from '../values';
 
@@ -14,10 +15,11 @@ export default function Home() {
 	const navigate = useNavigate();
 
 	const [foodByType, setFoodByType] = useState(null);
-
+	const [isLoading, setIsLoading] = useState(false);
 	useEffect(() => {
 		async function getFoodByType() {
 			try {
+				setIsLoading(true);
 				const res = await fetch(`${url}food/get_food_by_type`, {
 					method: 'GET',
 					headers: {
@@ -35,6 +37,8 @@ export default function Home() {
 				setFoodByType(data.data);
 			} catch (error) {
 				console.error(error);
+			} finally {
+				setIsLoading(false);
 			}
 		}
 
@@ -43,6 +47,8 @@ export default function Home() {
 
 	console.log(foodByType);
 
+	const foods = foodByType?.foods;
+
 	return (
 		<div className='home allow-select'>
 			<Header />
@@ -50,13 +56,12 @@ export default function Home() {
 				<HomeHead navigate={navigate} />
 				<WelcomeDate />
 				<Categories types={foodByType?.types} />
-				<CategoryFoodInfo />
-				<CategoryFoodInfo />
-				<CategoryFoodInfo />
-				<CategoryFoodInfo />
-				<CategoryFoodInfo />
+				{isLoading ? (
+					<Spinner />
+				) : (
+					foods?.map(food => <CategoryFoodInfo key={food._id} food={food} />)
+				)}
 
-				{/* Footer */}
 				<Footer />
 			</div>
 		</div>

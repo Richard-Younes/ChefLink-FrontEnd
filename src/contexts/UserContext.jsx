@@ -9,6 +9,7 @@ const UserContext = createContext();
 
 function UserProvider({ children }) {
 	const [user, setUser] = useState('Guest');
+	const [isLogged, setIsLogged] = useState(false);
 
 	useEffect(
 		function () {
@@ -21,6 +22,8 @@ function UserProvider({ children }) {
 
 					if (data.data !== '') {
 						setUser(data.data?.username);
+						setIsLogged(true);
+						console.log('User Provide Success');
 					}
 				} catch {
 					console.error('Failed to fetch USER');
@@ -37,6 +40,8 @@ function UserProvider({ children }) {
 			value={{
 				user,
 				setUser,
+				isLogged,
+				setIsLogged,
 			}}>
 			{children}
 		</UserContext.Provider>
