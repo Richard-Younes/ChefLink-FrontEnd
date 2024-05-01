@@ -1,9 +1,5 @@
 /** @format */
 import { useEffect, useState } from 'react';
-import Header from '../components/header';
-import Footer from '../components/footer';
-import HomeHead from '../components/HomeHead';
-import WelcomeDate from '../components/WelcomeDate';
 import Categories from '../components/Categories';
 import { useNavigate } from 'react-router-dom';
 import CategoryFoodInfo from '../components/CategoryFoodInfo';
@@ -48,20 +44,13 @@ export default function Home() {
 	const foods = foodByType?.foods;
 
 	return (
-		<div className='home allow-select'>
-			<Header />
-			<div className='home__content'>
-				<HomeHead navigate={navigate} />
-				<WelcomeDate />
-				<Categories types={foodByType?.types} />
-				{isLoading ? (
-					<Spinner />
-				) : (
-					foods?.map(food => <CategoryFoodInfo key={food._id} food={food} />)
-				)}
-
-				<Footer />
-			</div>
-		</div>
+		<>
+			<Categories types={foodByType?.types} />
+			{isLoading ? (
+				<Spinner />
+			) : (
+				foods?.map(food => <CategoryFoodInfo key={food._id} food={food} />)
+			)}
+		</>
 	);
 }
