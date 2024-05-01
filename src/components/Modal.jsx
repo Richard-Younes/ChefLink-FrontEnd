@@ -4,7 +4,7 @@ import styles from './Modal.module.css';
 import { useEffect, useState } from 'react';
 import { url } from '../values';
 
-function Modal() {
+function Modal({ foodName }) {
 	const { id } = useParams();
 	const [foodInfo, setFoodInfo] = useState({});
 
@@ -33,8 +33,9 @@ function Modal() {
 	console.log(foodInfo);
 
 	return (
-		<div>
-			<h1></h1>
+		<div className={styles.modalContainer}>
+			<h1>{foodName}</h1>
+			<img src='./public/burger1.jpg' alt='Burger' />
 		</div>
 	);
 }

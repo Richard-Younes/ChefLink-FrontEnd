@@ -5,6 +5,8 @@ import Home from './pages/home';
 import SignUp from './pages/SignUp';
 import { UserProvider } from './contexts/UserContext';
 import Modal from './components/Modal';
+import Bookmark from './pages/Bookmark';
+import Cart from './pages/Cart';
 
 export default function App() {
 	return (
@@ -16,6 +18,8 @@ export default function App() {
 					</Route>
 					<Route path='/login' element={<Login />} />
 					<Route path='/signup' element={<SignUp />} />
+					<Route path='/bookmark' element={<Bookmark />} />
+					<Route path='/cart' element={<Cart />} />
 				</Routes>
 			</BrowserRouter>
 		</UserProvider>
