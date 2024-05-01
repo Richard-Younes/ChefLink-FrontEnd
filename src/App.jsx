@@ -1,5 +1,5 @@
 /** @format */
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/login';
 import Home from './pages/home';
 import SignUp from './pages/SignUp';
@@ -31,8 +31,9 @@ export default function App() {
 							<Layout>
 								<Bookmark />
 							</Layout>
-						}
-					/>
+						}>
+						<Route path='/bookmark/:id' element={<Modal />} />
+					</Route>
 					<Route
 						path='/cart'
 						element={

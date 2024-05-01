@@ -1,15 +1,12 @@
 /** @format */
 import { useEffect, useState } from 'react';
 import Categories from '../components/Categories';
-import { useNavigate } from 'react-router-dom';
 import CategoryFoodInfo from '../components/CategoryFoodInfo';
 import Spinner from '../components/Spinner';
 
 import { url } from '../values';
 
 export default function Home() {
-	const navigate = useNavigate();
-
 	const [foodByType, setFoodByType] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	useEffect(() => {

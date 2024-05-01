@@ -5,6 +5,7 @@ import { useUser } from '../contexts/UserContext';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import Modal from './Modal';
+import { useBookmark } from '../contexts/BookmarkContext';
 
 function FoodInfoContainer({ item }) {
 	const [isBookmarked, setIsBookmarked] = useState(false);
@@ -12,39 +13,18 @@ function FoodInfoContainer({ item }) {
 	const navigate = useNavigate();
 
 	const { id } = useParams();
+	const { bookmarkedItems, bookmarkUnbookmark } = useBookmark();
 
-	useEffect(
-		function () {
-			async function checkBookmark() {
-				try {
-					const response = await fetch(`${url}auth/get_bookmarks`, {
-						method: 'GET',
-						credentials: 'include',
-					});
-					if (!response.ok) {
-						throw new Error(`Failed to fetch bookmarks: ${data.error}`);
-					}
-
-					const data = await response.json();
-
-					const bookmarks = data.msg.Bookmarks;
-
-					if (bookmarks !== undefined && bookmarks.length !== 0) {
-						bookmarks.map(bookmark => {
-							if (bookmark === item.id_food) {
-								setIsBookmarked(true);
-							}
-						});
-					}
-				} catch (error) {
-					console.error(`Error with checking bookmark💥💥:${error}`);
+	useEffect(() => {
+		if (bookmarkedItems !== null && bookmarkedItems.length !== 0) {
+			bookmarkedItems.map(bookmark => {
+				if (bookmark === item.id_food) {
+					setIsBookmarked(true);
 				}
-			}
-
-			checkBookmark();
-		},
-		[isLogged, item]
-	);
+			});
+		}
+		return () => {};
+	}, [bookmarkedItems, item.id_food]);
 
 	function handleBookmark() {
 		if (!isLogged) {
@@ -52,37 +32,7 @@ function FoodInfoContainer({ item }) {
 			return;
 		}
 
-		const sentData = { food_id: item.id_food };
-
-		async function addremoveBookmark() {
-			try {
-				const response = await fetch(`${url}auth/add_rem_bookmarks`, {
-					method: 'PUT',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-					credentials: 'include',
-					body: JSON.stringify(sentData),
-				});
-
-				const data = await response.json();
-
-				if (!response.ok) {
-					throw new Error(data.error);
-				}
-
-				if (data.msg === 'BOOKMARKED') {
-					setIsBookmarked(true);
-				}
-				if (data.msg === 'UNBOOKMARKED') {
-					setIsBookmarked(false);
-				}
-			} catch (error) {
-				console.error(`Error with adding/removing bookmark💥💥:${error}`);
-			}
-		}
-
-		addremoveBookmark();
+		bookmarkUnbookmark(item.id_food, setIsBookmarked);
 	}
 
 	return (

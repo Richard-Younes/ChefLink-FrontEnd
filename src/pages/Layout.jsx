@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import HomeHead from '../components/HomeHead';
 import Footer from '../components/footer';
 import Header from '../components/header';
+import WelcomeDate from '../components/WelcomeDate';
+import { BookmarkProvider } from '../contexts/BookmarkContext';
 
 function Layout({ children }) {
 	const navigate = useNavigate();
@@ -13,7 +15,8 @@ function Layout({ children }) {
 			<Header />
 			<div className='home__content'>
 				<HomeHead navigate={navigate} />
-				{children}
+				<WelcomeDate />
+				<BookmarkProvider>{children}</BookmarkProvider>
 				<Footer />
 			</div>
 		</div>
