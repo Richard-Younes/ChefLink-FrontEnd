@@ -65,7 +65,12 @@
 	margin-bottom: -6rem;
 }
 
-.active-page {
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.page__list .active {
 	background: linear-gradient(to bottom, #f76b1c 10%, #f9cf59);
 	background-clip: text;
 	-webkit-background-clip: text;
