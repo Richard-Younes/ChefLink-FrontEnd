@@ -4,7 +4,7 @@ import CustomSwiper from './CustomSwiper';
 
 function CategoryFoodInfo({ food }) {
 	// This if statement is just used to not let swipers with less then 4 elements be displayed
-	if (food?.collections.length < 4) return null;
+	// if (food?.collections.length < 4) return null;
 
 	return (
 		<div className='category-food-info-container'>
