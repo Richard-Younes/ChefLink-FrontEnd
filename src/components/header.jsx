@@ -1,5 +1,5 @@
 /** @format */
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import styles from './header.module.css';
 import Popup from 'reactjs-popup';
 import { useEffect, useState } from 'react';
@@ -177,8 +177,8 @@ function HeaderPagesList() {
 			</div>
 			<p className='page__list-username'>{user}</p>
 			<p className='page__list-elements active-page'>Home</p>
-			<p className='page__list-elements'>Bookmark</p>
-			<p className='page__list-elements'>Cart</p>
+			<NavLink className='page__list-elements' to="/bookmark">Bookmark</NavLink>
+			<NavLink className='page__list-elements' to="/cart">Cart</NavLink>
 			<p className='page__list-elements'>Analytics</p>
 			<p className='page__list-elements'>About Us</p>
 			<p className='page__list-elements'>Settings</p>
