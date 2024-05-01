@@ -44,7 +44,7 @@ function HomeHead({ navigate }) {
 				</span>
 			</form>
 			{user === 'Guest' ? (
-				<Link to='login' className='btn btn--green-small home__btn'>
+				<Link to='/login' className='btn btn--green-small home__btn'>
 					Login
 				</Link>
 			) : (
