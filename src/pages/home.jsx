@@ -45,8 +45,6 @@ export default function Home() {
 		getFoodByType();
 	}, []);
 
-	console.log(foodByType);
-
 	const foods = foodByType?.foods;
 
 	return (

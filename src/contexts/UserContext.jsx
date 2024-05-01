@@ -14,19 +14,15 @@ function UserProvider({ children }) {
 	useEffect(
 		function () {
 			async function fetchUser() {
-				try {
-					const response = await fetch(`${Base_URL}auth/get_profile`, {
-						credentials: 'include',
-					});
-					const data = await response.json();
+				const response = await fetch(`${Base_URL}auth/get_profile`, {
+					credentials: 'include',
+				});
+				const data = await response.json();
 
-					if (data.data !== '') {
-						setUser(data.data?.username);
-						setIsLogged(true);
-						console.log('User Provide Success');
-					}
-				} catch {
-					console.error('Failed to fetch USER');
+				if (data.data !== '') {
+					setUser(data.data?.username);
+					setIsLogged(true);
+					console.log('User Provide Success');
 				}
 			}
 

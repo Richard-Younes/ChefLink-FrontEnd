@@ -16,8 +16,7 @@ function CustomSwiper({ children, spaceBetween = 50, slidesPerView = 5 }) {
 			spaceBetween={spaceBetween}
 			slidesPerView={slidesPerView}
 			navigation
-			scrollbar={{ draggable: true }}
-			onSlideChange={() => console.log('slide change')}>
+			scrollbar={{ draggable: true }}>
 			{children.map((child, index) => (
 				<SwiperSlide key={index}>{child}</SwiperSlide>
 			))}

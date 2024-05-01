@@ -2,12 +2,16 @@
 import { useEffect, useState } from 'react';
 import { url } from '../values';
 import { useUser } from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import Popup from 'reactjs-popup';
+import Modal from './Modal';
 
 function FoodInfoContainer({ item }) {
 	const [isBookmarked, setIsBookmarked] = useState(false);
 	const { isLogged } = useUser();
 	const navigate = useNavigate();
+
+	const { id } = useParams();
 
 	useEffect(
 		function () {
@@ -24,7 +28,8 @@ function FoodInfoContainer({ item }) {
 					const data = await response.json();
 
 					const bookmarks = data.msg.Bookmarks;
-					if (bookmarks.length !== 0) {
+
+					if (bookmarks !== undefined && bookmarks.length !== 0) {
 						bookmarks.map(bookmark => {
 							if (bookmark === item.id_food) {
 								setIsBookmarked(true);
@@ -38,7 +43,7 @@ function FoodInfoContainer({ item }) {
 
 			checkBookmark();
 		},
-		[item.id_food, isLogged]
+		[isLogged, item]
 	);
 
 	function handleBookmark() {
@@ -111,9 +116,21 @@ function FoodInfoContainer({ item }) {
 
 			<div className='food-container__footer'>
 				<p>{`$${item.price}`}</p>
-				<button className='btn category__btn category__btn-active food-container__button'>
-					Order
-				</button>
+				<Popup
+					open={() => (id === item.id_food ? true : false)}
+					trigger={
+						<Link to={`${item.id_food}`}>
+							<button className='btn category__btn category__btn-active food-container__button'>
+								Order
+							</button>
+						</Link>
+					}
+					modal
+					onClose={() => {
+						navigate('/');
+					}}>
+					<Modal />
+				</Popup>
 			</div>
 		</div>
 	);
