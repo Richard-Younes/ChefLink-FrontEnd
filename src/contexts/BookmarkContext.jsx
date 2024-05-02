@@ -10,7 +10,7 @@ const BookmarkContext = createContext();
 function BookmarkProvider({ children }) {
 	const [bookmarkedItems, setBookmarkedItems] = useState(null);
 	const [synchronizeBookmark, setSynchronizeBookmark] = useState(true);
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 	useEffect(() => {
 		async function fetchBookmarks() {
 			try {

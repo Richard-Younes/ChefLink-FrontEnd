@@ -12,7 +12,7 @@ import { useUser } from '../contexts/UserContext';
 import Pagination from './PaginationComponent';
 
 function BookmarkedItems() {
-	const { bookmarkedItems, bookmarkUnbookmark, isLoading } = useBookmark();
+	const { bookmarkedItems, bookmarkUnbookmark } = useBookmark();
 	const [bookmarkedItemsInfo, setBookmarkedItemsInfo] = useState([]);
 	const { id } = useParams();
 	const navigate = useNavigate();
@@ -50,6 +50,7 @@ function BookmarkedItems() {
 		const newBookmarkedItems = bookmarkedItemsInfo.filter(
 			item => item.id_food !== foodId
 		);
+
 		setBookmarkedItemsInfo(newBookmarkedItems);
 
 		bookmarkUnbookmark(foodId);
@@ -57,7 +58,7 @@ function BookmarkedItems() {
 
 	const { isLogged } = useUser();
 
-	if (isLoading) {
+	if (!bookmarkedItems) {
 		return <Spinner />;
 	}
 

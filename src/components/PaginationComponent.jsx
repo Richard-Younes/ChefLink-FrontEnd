@@ -20,7 +20,7 @@ function PaginationComponent({
 				main: '#55c57a',
 				light: '#7ed56f',
 				dark: '#28b485',
-				contrastText: '#333',
+				contrastText: '#000',
 			},
 		},
 	});
