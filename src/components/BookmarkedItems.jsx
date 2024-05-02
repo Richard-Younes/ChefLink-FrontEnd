@@ -77,7 +77,7 @@ function BookmarkedItems() {
 					<div className='food-container' key={index}>
 						<img
 							className='food-container__image'
-							src='public/burger1.jpg'
+							src='burger1.jpg'
 							alt='Food image'
 						/>
 						<div className='food-container__header'>

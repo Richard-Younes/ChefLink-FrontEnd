@@ -76,7 +76,7 @@ function SignUpForm() {
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit}>
-			<img src='public/logo.webp' alt='logo' className={styles.logo} />
+			<img src='logo.webp' alt='logo' className={styles.logo} />
 
 			<div className={styles.inputContainer}>
 				<label

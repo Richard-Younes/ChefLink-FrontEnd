@@ -85,7 +85,7 @@ function LoginForm() {
 		<form className='form login__form' onSubmit={handleSubmit}>
 			<img
 				className='logo u-margin-bottom-small'
-				src='public/Logo.webp'
+				src='Logo.webp'
 				alt='ChefLink logo'
 			/>
 

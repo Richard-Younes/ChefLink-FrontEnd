@@ -27,7 +27,7 @@ export function LogoHeader() {
 	return (
 		<div className='header__logo-container'>
 			<img
-				src='public/Logo.webp'
+				src='Logo.webp'
 				alt='Logo image'
 				className='header__logo-image'
 				onClick={handleClick}

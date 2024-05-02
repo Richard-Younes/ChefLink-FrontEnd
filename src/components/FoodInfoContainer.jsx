@@ -38,7 +38,7 @@ function FoodInfoContainer({ item }) {
 		<div className='food-container'>
 			<img
 				className='food-container__image'
-				src='public/burger1.jpg'
+				src='burger1.jpg'
 				alt='Food image'
 			/>
 			<div className='food-container__header'>
