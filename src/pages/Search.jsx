@@ -18,16 +18,8 @@ function Search() {
 	const navigate = useNavigate();
 	const { bookmarkedItems, bookmarkUnbookmark } = useBookmark();
 
-	function debounce(func, delay) {
-		let timer;
-		return function (...args) {
-			clearTimeout(timer);
-			timer = setTimeout(() => func.apply(this, args), delay);
-		};
-	}
-
 	useEffect(() => {
-		const handleSearch = debounce(async () => {
+		const handleSearch = async () => {
 			try {
 				const res = await fetch(
 					`${url}food/search_food?search=${searchQuery}`,
@@ -44,12 +36,14 @@ function Search() {
 			} catch (error) {
 				console.error(`Search error 💥💥:${error}`);
 			}
-		}, 1000);
+		};
 		handleSearch();
 	}, [searchQuery]);
+	console.log(searchQuery);
 
 	if (searchResults === null) return <Spinner />;
-	if (searchResults.length === 0) return <h2>No results found</h2>;
+	if (searchResults.length === 0)
+		return <h2 className={styles.noResults}>No results found</h2>;
 
 	return (
 		<div className={styles.searchContainer}>
