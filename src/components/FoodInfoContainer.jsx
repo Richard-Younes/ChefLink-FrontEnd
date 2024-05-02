@@ -1,6 +1,5 @@
 /** @format */
 import { useEffect, useState } from 'react';
-import { url } from '../values';
 import { useUser } from '../contexts/UserContext';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';

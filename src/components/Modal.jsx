@@ -35,7 +35,7 @@ function Modal({ foodName }) {
 	return (
 		<div className={styles.modalContainer}>
 			<h1>{foodName}</h1>
-			<img src='./public/burger1.jpg' alt='Burger' />
+			<img src='../public/burger1.jpg' alt='Burger' />
 		</div>
 	);
 }
