@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { url } from '../values';
+import { useUser } from './UserContext';
 
 const Base_URL = url;
 
@@ -11,7 +12,10 @@ function BookmarkProvider({ children }) {
 	const [bookmarkedItems, setBookmarkedItems] = useState(null);
 	const [synchronizeBookmark, setSynchronizeBookmark] = useState(true);
 	const [isLoading, setIsLoading] = useState(false);
+	const { isLogged } = useUser();
+
 	useEffect(() => {
+		if (!isLogged) return () => {};
 		async function fetchBookmarks() {
 			try {
 				setIsLoading(true);
@@ -33,7 +37,7 @@ function BookmarkProvider({ children }) {
 			}
 		}
 		fetchBookmarks();
-	}, [synchronizeBookmark]);
+	}, [synchronizeBookmark, isLogged]);
 
 	function bookmarkUnbookmark(foodId, setIsBookmarked = () => {}) {
 		const sentData = { food_id: foodId };

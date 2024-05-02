@@ -58,18 +58,16 @@ function BookmarkedItems() {
 
 	const { isLogged } = useUser();
 
-	if (!bookmarkedItems) {
-		return <Spinner />;
-	}
-
 	if (!isLogged) {
 		return (
 			<h2 className={styles.noBookmark}>Please login to view your bookmarks</h2>
 		);
 	}
-
-	if (bookmarkedItems?.length === 0) {
+	if (bookmarkedItemsInfo.length === 0) {
 		return <h2 className={styles.noBookmark}>No bookmarked foods</h2>;
+	}
+	if (!bookmarkedItems) {
+		return <Spinner />;
 	}
 
 	return (
