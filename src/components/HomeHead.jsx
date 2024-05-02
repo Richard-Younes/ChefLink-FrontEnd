@@ -3,13 +3,12 @@
 import { Link } from 'react-router-dom';
 import { url } from '../values';
 import { useUser } from '../contexts/UserContext';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
 /** @format */
 
 function HomeHead({ navigate }) {
 	const [searchQuery, setSearchQuery] = useState('');
-	const [searchResults, setSearchResults] = useState([]);
 
 	const { user, setUser } = useUser();
 
@@ -36,36 +35,22 @@ function HomeHead({ navigate }) {
 	}
 
 	useEffect(() => {
-		async function handleSearch() {
-			try {
-				const res = await fetch(
-					`${url}food/search_food?search=${searchQuery}`,
-					{
-						credentials: 'include',
-					}
-				);
-				const data = await res.json();
-
-				if (!res.ok) {
-					throw new Error(`${data.error}`);
-				}
-				setSearchResults(data.data);
-			} catch (error) {
-				console.error(`Search error 💥💥:${error}`);
-			}
-		}
-		handleSearch();
+		if (searchQuery !== '') navigate(`/search?q=${searchQuery}`);
 	}, [searchQuery]);
-
 	const handleChange = e => {
 		setSearchQuery(e.target.value);
 	};
 
-	console.log(searchResults);
+	function handleSubmit(e) {
+		e.preventDefault();
+		setSearchQuery(e.target[0].value);
+		document.activeElement.blur();
+		navigate(`/search?q=${searchQuery}`);
+	}
 
 	return (
 		<div className='home__content--top'>
-			<form className='searchbar-form' onSubmit={e => e.preventDefault()}>
+			<form className='searchbar-form' onSubmit={handleSubmit}>
 				<input
 					type='text'
 					placeholder='Search'

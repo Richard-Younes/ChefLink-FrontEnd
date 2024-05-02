@@ -8,6 +8,7 @@ import Modal from './components/Modal';
 import Bookmark from './pages/Bookmark';
 import Cart from './pages/Cart';
 import Layout from './pages/Layout';
+import Search from './pages/Search';
 
 export default function App() {
 	return (
@@ -39,6 +40,14 @@ export default function App() {
 						element={
 							<Layout>
 								<Cart />
+							</Layout>
+						}
+					/>
+					<Route
+						path='/search'
+						element={
+							<Layout>
+								<Search />
 							</Layout>
 						}
 					/>

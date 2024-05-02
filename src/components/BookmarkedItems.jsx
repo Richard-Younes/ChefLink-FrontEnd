@@ -9,7 +9,7 @@ import Popup from 'reactjs-popup';
 import Modal from './Modal';
 import { useBookmark } from '../contexts/BookmarkContext';
 import { useUser } from '../contexts/UserContext';
-import Pagination from './PaginationComponent';
+import PaginationComponent from './PaginationComponent';
 
 function BookmarkedItems() {
 	const { bookmarkedItems, bookmarkUnbookmark } = useBookmark();
@@ -72,7 +72,7 @@ function BookmarkedItems() {
 
 	return (
 		<div className={styles.bookmarkContainer}>
-			<Pagination>
+			<PaginationComponent>
 				{bookmarkedItemsInfo.map((item, index) => (
 					<div className='food-container' key={index}>
 						<img
@@ -122,7 +122,7 @@ function BookmarkedItems() {
 						</div>
 					</div>
 				))}
-			</Pagination>
+			</PaginationComponent>
 		</div>
 	);
 }
