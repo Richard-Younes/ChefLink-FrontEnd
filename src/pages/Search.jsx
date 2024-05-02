@@ -17,10 +17,12 @@ function Search() {
 	const searchQuery = searchParams.get('q');
 	const navigate = useNavigate();
 	const { bookmarkedItems, bookmarkUnbookmark } = useBookmark();
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		const handleSearch = async () => {
 			try {
+				setIsLoading(true);
 				const res = await fetch(
 					`${url}food/search_food?search=${searchQuery}`,
 					{
@@ -35,13 +37,15 @@ function Search() {
 				setSearchResults(data.data);
 			} catch (error) {
 				console.error(`Search error 💥💥:${error}`);
+			} finally {
+				setIsLoading(false);
 			}
 		};
 		handleSearch();
 	}, [searchQuery]);
 	console.log(searchQuery);
 
-	if (searchResults === null) return <Spinner />;
+	if (searchResults === null || isLoading) return <Spinner />;
 	if (searchResults.length === 0)
 		return <h2 className={styles.noResults}>No results found</h2>;
 
