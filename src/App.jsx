@@ -49,8 +49,9 @@ export default function App() {
 							<Layout>
 								<Search />
 							</Layout>
-						}
-					/>
+						}>
+						<Route path='/search/:id' element={<Modal />} />
+					</Route>
 				</Routes>
 			</BrowserRouter>
 		</UserProvider>

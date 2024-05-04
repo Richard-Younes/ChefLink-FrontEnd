@@ -16,6 +16,7 @@ function BookmarkedItems() {
 	const [bookmarkedItemsInfo, setBookmarkedItemsInfo] = useState([]);
 	const { id } = useParams();
 	const navigate = useNavigate();
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
 		if (bookmarkedItems?.length === 0 || bookmarkedItems === null)
@@ -58,16 +59,32 @@ function BookmarkedItems() {
 
 	const { isLogged } = useUser();
 
+	useEffect(() => {
+		let timer;
+		if (bookmarkedItemsInfo.length === 0) {
+			timer = setTimeout(() => {
+				setLoading(false);
+			}, 2000);
+		} else {
+			setLoading(false);
+		}
+		return () => clearTimeout(timer);
+	}, [bookmarkedItemsInfo.length]);
+
 	if (!isLogged) {
 		return (
 			<h2 className={styles.noBookmark}>Please login to view your bookmarks</h2>
 		);
 	}
-	if (bookmarkedItemsInfo.length === 0) {
-		return <h2 className={styles.noBookmark}>No bookmarked foods</h2>;
-	}
+
 	if (!bookmarkedItems) {
 		return <Spinner />;
+	}
+
+	if (loading) {
+		return <Spinner />;
+	} else if (bookmarkedItemsInfo.length === 0) {
+		return <h2 className={styles.noBookmark}>You have no bookmarked items</h2>;
 	}
 
 	return (

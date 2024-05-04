@@ -4,16 +4,19 @@ import styles from './Modal.module.css';
 import { useEffect, useState } from 'react';
 import { url } from '../values';
 
-function Modal({ foodName }) {
+function Modal({ foodName, foodId }) {
 	const { id } = useParams();
 	const [foodInfo, setFoodInfo] = useState({});
 
 	useEffect(() => {
 		async function getFoodInfo() {
 			try {
-				const res = await fetch(`${url}food/get_ingred_options?food_id=${id}`, {
-					credentials: 'include',
-				});
+				const res = await fetch(
+					`${url}food/get_ingred_options?food_id=${id ? id : foodId}`,
+					{
+						credentials: 'include',
+					}
+				);
 
 				const data = await res.json();
 
@@ -28,9 +31,7 @@ function Modal({ foodName }) {
 		}
 
 		getFoodInfo();
-	}, [id]);
-
-	console.log(foodInfo);
+	}, [id, foodId]);
 
 	return (
 		<div className={styles.modalContainer}>

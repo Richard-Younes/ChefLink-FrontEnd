@@ -1,17 +1,23 @@
 /** @format */
 
-import { Link, useNavigate, useSearchParams } from 'react-router-dom';
+import {
+	Link,
+	useNavigate,
+	useParams,
+	useSearchParams,
+} from 'react-router-dom';
 import PaginationComponent from '../components/PaginationComponent';
 import Spinner from '../components/Spinner';
 import { useEffect, useState } from 'react';
 import { url } from '../values';
 import Popup from 'reactjs-popup';
-import { Modal } from '@mui/material';
 import { useBookmark } from '../contexts/BookmarkContext';
 import styles from './Search.module.css';
+import Modal from '../components/Modal';
 
 function Search() {
 	const [searchResults, setSearchResults] = useState(null);
+	const { id } = useParams();
 
 	const [searchParams] = useSearchParams();
 	const searchQuery = searchParams.get('q');
@@ -48,9 +54,11 @@ function Search() {
 	if (searchResults === null || isLoading) return <Spinner />;
 	if (searchResults.length === 0)
 		return <h2 className={styles.noResults}>No results found</h2>;
+	console.log(searchResults);
 
 	return (
 		<div className={styles.searchContainer}>
+			<h1>Search Results</h1>
 			<PaginationComponent>
 				{searchResults.map((item, index) => (
 					<div className='food-container' key={index}>
@@ -64,7 +72,7 @@ function Search() {
 							<div
 								className='food-container__bookmark-icon'
 								onClick={() => bookmarkUnbookmark(item.id_food)}>
-								{bookmarkedItems.find(element => element === item.id_food) !==
+								{bookmarkedItems?.find(element => element === item.id_food) !==
 								undefined ? (
 									<ion-icon name='bookmark'></ion-icon>
 								) : (
@@ -96,19 +104,17 @@ function Search() {
 						<div className='food-container__footer'>
 							<p>{`$${item.price}`}</p>
 							<Popup
-								// open={() => (id === item.id_food ? true : false)}
+								open={() => (id === item.id_food ? true : false)}
 								trigger={
-									<Link to={`${item.id_food}`}>
-										<button className='btn category__btn category__btn-active food-container__button'>
-											Order
-										</button>
-									</Link>
+									<button className='btn category__btn category__btn-active food-container__button'>
+										Order
+									</button>
 								}
 								modal
 								onClose={() => {
-									navigate('/bookmark');
+									navigate(`/search?q=${searchQuery}`);
 								}}>
-								<Modal foodName={item.name} />
+								<Modal foodName={item.name} foodId={item.id_food} />
 							</Popup>
 						</div>
 					</div>
