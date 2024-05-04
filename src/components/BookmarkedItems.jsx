@@ -10,10 +10,12 @@ import Modal from './Modal';
 import { useBookmark } from '../contexts/BookmarkContext';
 import { useUser } from '../contexts/UserContext';
 import PaginationComponent from './PaginationComponent';
+import SpinnerImage from './SpinnerImage';
 
 function BookmarkedItems() {
 	const { bookmarkedItems, bookmarkUnbookmark } = useBookmark();
 	const [bookmarkedItemsInfo, setBookmarkedItemsInfo] = useState([]);
+	const [foodImageURL, setFoodImageURL] = useState([]);
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
@@ -61,7 +63,7 @@ function BookmarkedItems() {
 
 	useEffect(() => {
 		let timer;
-		if (bookmarkedItemsInfo.length === 0) {
+		if (bookmarkedItemsInfo?.length === 0) {
 			timer = setTimeout(() => {
 				setLoading(false);
 			}, 2000);
@@ -69,7 +71,34 @@ function BookmarkedItems() {
 			setLoading(false);
 		}
 		return () => clearTimeout(timer);
-	}, [bookmarkedItemsInfo.length]);
+	}, [bookmarkedItemsInfo?.length]);
+
+	const foodIds = bookmarkedItemsInfo?.map(item => `food/${item.id_food}`);
+	useEffect(() => {
+		async function getFoodImages() {
+			try {
+				const res = await fetch(`${url}media/generate_image_url_bulk`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					include: 'credentials',
+					body: JSON.stringify({ paths: foodIds }),
+				});
+
+				const data = await res.json();
+
+				if (!res.ok) {
+					throw new Error(data.message);
+				}
+
+				setFoodImageURL(data.data);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		if (foodIds) getFoodImages();
+	}, [foodIds]);
 
 	if (!isLogged) {
 		return (
@@ -83,20 +112,24 @@ function BookmarkedItems() {
 
 	if (loading) {
 		return <Spinner />;
-	} else if (bookmarkedItemsInfo.length === 0) {
+	} else if (bookmarkedItemsInfo?.length === 0) {
 		return <h2 className={styles.noBookmark}>You have no bookmarked items</h2>;
 	}
 
 	return (
 		<div className={styles.bookmarkContainer}>
 			<PaginationComponent>
-				{bookmarkedItemsInfo.map((item, index) => (
+				{bookmarkedItemsInfo?.map((item, index) => (
 					<div className='food-container' key={index}>
-						<img
-							className='food-container__image'
-							src='burger1.jpg'
-							alt='Food image'
-						/>
+						{foodImageURL.length !== 0 ? (
+							<img
+								className='food-container__image'
+								src={foodImageURL?.[index]}
+								alt='Food image'
+							/>
+						) : (
+							<SpinnerImage />
+						)}
 						<div className='food-container__header'>
 							<p className='food-container__name'>{item.name}</p>
 							<div

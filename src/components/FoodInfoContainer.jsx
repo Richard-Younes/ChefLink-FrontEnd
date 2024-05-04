@@ -5,9 +5,12 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import Popup from 'reactjs-popup';
 import Modal from './Modal';
 import { useBookmark } from '../contexts/BookmarkContext';
+import { url } from '../values';
+import SpinnerImage from './SpinnerImage';
 
 function FoodInfoContainer({ item }) {
 	const [isBookmarked, setIsBookmarked] = useState(false);
+	const [foodImageURL, setFoodImageURL] = useState('');
 	const { isLogged } = useUser();
 	const navigate = useNavigate();
 
@@ -25,6 +28,33 @@ function FoodInfoContainer({ item }) {
 		return () => {};
 	}, [bookmarkedItems, item.id_food]);
 
+	useEffect(() => {
+		async function getFoodImages() {
+			try {
+				const res = await fetch(`${url}media/generate_image_url_bulk`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					include: 'credentials',
+					body: JSON.stringify({ paths: [`food/${item.id_food}`] }),
+				});
+
+				const data = await res.json();
+
+				if (!res.ok) {
+					throw new Error(data.message);
+				}
+
+				setFoodImageURL(data.data);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		getFoodImages();
+	}, [item.id_food]);
+
 	function handleBookmark() {
 		if (!isLogged) {
 			navigate('/login');
@@ -36,11 +66,15 @@ function FoodInfoContainer({ item }) {
 
 	return (
 		<div className='food-container'>
-			<img
-				className='food-container__image'
-				src='burger1.jpg'
-				alt='Food image'
-			/>
+			{foodImageURL !== '' ? (
+				<img
+					className='food-container__image'
+					src={foodImageURL}
+					alt='Food image'
+				/>
+			) : (
+				<SpinnerImage />
+			)}
 			<div className='food-container__header'>
 				<p className='food-container__name'>{item.name}</p>
 				<div className='food-container__bookmark-icon' onClick={handleBookmark}>

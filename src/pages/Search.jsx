@@ -14,6 +14,7 @@ import Popup from 'reactjs-popup';
 import { useBookmark } from '../contexts/BookmarkContext';
 import styles from './Search.module.css';
 import Modal from '../components/Modal';
+import SpinnerImage from '../components/SpinnerImage';
 
 function Search() {
 	const [searchResults, setSearchResults] = useState(null);
@@ -24,6 +25,7 @@ function Search() {
 	const navigate = useNavigate();
 	const { bookmarkedItems, bookmarkUnbookmark } = useBookmark();
 	const [isLoading, setIsLoading] = useState(false);
+	const [foodImageURL, setFoodImageURL] = useState([]);
 
 	useEffect(() => {
 		const handleSearch = async () => {
@@ -51,6 +53,33 @@ function Search() {
 	}, [searchQuery]);
 	console.log(searchQuery);
 
+	const foodIds = searchResults?.map(item => `food/${item.id_food}`);
+	useEffect(() => {
+		async function getFoodImages() {
+			try {
+				const res = await fetch(`${url}media/generate_image_url_bulk`, {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					include: 'credentials',
+					body: JSON.stringify({ paths: foodIds }),
+				});
+
+				const data = await res.json();
+
+				if (!res.ok) {
+					throw new Error(data.message);
+				}
+
+				setFoodImageURL(data.data);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		if (foodIds) getFoodImages();
+	}, [foodIds]);
+
 	if (searchResults === null || isLoading) return <Spinner />;
 	if (searchResults.length === 0)
 		return <h2 className={styles.noResults}>No results found</h2>;
@@ -62,11 +91,15 @@ function Search() {
 			<PaginationComponent>
 				{searchResults.map((item, index) => (
 					<div className='food-container' key={index}>
-						<img
-							className='food-container__image'
-							src='burger1.jpg'
-							alt='Food image'
-						/>
+						{foodImageURL.length !== 0 ? (
+							<img
+								className='food-container__image'
+								src={foodImageURL?.[index]}
+								alt='Food image'
+							/>
+						) : (
+							<SpinnerImage />
+						)}
 						<div className='food-container__header'>
 							<p className='food-container__name'>{item.name}</p>
 							<div

@@ -9,6 +9,7 @@ import { url } from '../values';
 export default function Home() {
 	const [foodByType, setFoodByType] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
+
 	useEffect(() => {
 		async function getFoodByType() {
 			try {
@@ -38,7 +39,14 @@ export default function Home() {
 		getFoodByType();
 	}, []);
 
-	const foods = foodByType?.foods;
+	let foods = foodByType?.foods;
+
+	// foods?.forEach(food => {
+	// 	food.collections.forEach(item => {
+	// 		item.picture = foodImageURL[counter];
+	// 		counter = counter + 1;
+	// 	});
+	// });
 
 	return (
 		<>
