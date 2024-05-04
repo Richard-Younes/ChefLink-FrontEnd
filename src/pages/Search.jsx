@@ -51,7 +51,6 @@ function Search() {
 		};
 		handleSearch();
 	}, [searchQuery]);
-	console.log(searchQuery);
 
 	const foodIds = searchResults?.map(item => `food/${item.id_food}`);
 	useEffect(() => {
@@ -83,7 +82,6 @@ function Search() {
 	if (searchResults === null || isLoading) return <Spinner />;
 	if (searchResults.length === 0)
 		return <h2 className={styles.noResults}>No results found</h2>;
-	console.log(searchResults);
 
 	return (
 		<div className={styles.searchContainer}>

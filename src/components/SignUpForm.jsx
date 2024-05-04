@@ -42,7 +42,6 @@ function SignUpForm() {
 			date_of_birth: formData.date_of_birth,
 			pp_url: formData.pp_url,
 		};
-		console.log(sentData);
 
 		async function handleSignUp() {
 			try {
@@ -56,7 +55,6 @@ function SignUpForm() {
 				);
 
 				if (!res.ok) {
-					console.log(res);
 					const data = await res.json();
 					throw new Error(data.error);
 				}

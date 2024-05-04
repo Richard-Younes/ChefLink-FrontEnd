@@ -35,7 +35,7 @@ function HomeHead({ navigate }) {
 	}
 
 	useEffect(() => {
-		if (searchQuery !== '') navigate(`/search?q=${searchQuery}`);
+		navigate(`/search?q=${searchQuery}`);
 	}, [searchQuery]);
 	const handleChange = e => {
 		setSearchQuery(e.target.value);
