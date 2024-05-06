@@ -19,7 +19,11 @@ function BookmarkedItems() {
 	const { id } = useParams();
 	const navigate = useNavigate();
 	const [loading, setLoading] = useState(true);
-
+	let items = [...bookmarkedItemsInfo];
+	items = items?.map((item, index) => ({
+		...item,
+		picture: foodImageURL.length !== 0 ? foodImageURL[index] : '.',
+	}));
 	useEffect(() => {
 		if (bookmarkedItems?.length === 0 || bookmarkedItems === null)
 			return () => {};
@@ -49,12 +53,17 @@ function BookmarkedItems() {
 		getFoodInfo();
 	}, [bookmarkedItems]);
 
-	function removeBookmarkLocally(foodId) {
-		const newBookmarkedItems = bookmarkedItemsInfo.filter(
-			item => item.id_food !== foodId
-		);
+	function removeBookmarkLocally(foodId, index) {
+		const newItems = [...items]; // Create a copy of the array
+		newItems.splice(index, 1); // Remove the item at the specified index
 
-		setBookmarkedItemsInfo(newBookmarkedItems);
+		// Update state with the modified array
+		setBookmarkedItemsInfo(prevBookmarkedItems =>
+			prevBookmarkedItems.filter(item => item.id_food !== foodId)
+		);
+		setFoodImageURL(prevFoodImageURL =>
+			prevFoodImageURL.filter((_, i) => i !== index)
+		);
 
 		bookmarkUnbookmark(foodId);
 	}
@@ -73,8 +82,8 @@ function BookmarkedItems() {
 		return () => clearTimeout(timer);
 	}, [bookmarkedItemsInfo?.length]);
 
-	const foodIds = bookmarkedItemsInfo?.map(item => `food/${item.id_food}`);
 	useEffect(() => {
+		const foodIds = bookmarkedItemsInfo?.map(item => `food/${item.id_food}`);
 		async function getFoodImages() {
 			try {
 				const res = await fetch(`${url}media/generate_image_url_bulk`, {
@@ -98,7 +107,10 @@ function BookmarkedItems() {
 			}
 		}
 		if (foodIds) getFoodImages();
-	}, [foodIds]);
+	}, [bookmarkedItemsInfo]);
+
+	console.log(foodImageURL);
+	console.log(bookmarkedItemsInfo);
 
 	if (!isLogged) {
 		return (
@@ -112,19 +124,19 @@ function BookmarkedItems() {
 
 	if (loading) {
 		return <Spinner />;
-	} else if (bookmarkedItemsInfo?.length === 0) {
+	} else if (items?.length === 0) {
 		return <h2 className={styles.noBookmark}>You have no bookmarked items</h2>;
 	}
 
 	return (
 		<div className={styles.bookmarkContainer}>
 			<PaginationComponent>
-				{bookmarkedItemsInfo?.map((item, index) => (
+				{items?.map((item, index) => (
 					<div className='food-container' key={index}>
 						{foodImageURL.length !== 0 ? (
 							<img
 								className='food-container__image'
-								src={foodImageURL?.[index]}
+								src={item.picture}
 								alt='Food image'
 							/>
 						) : (
@@ -134,7 +146,7 @@ function BookmarkedItems() {
 							<p className='food-container__name'>{item.name}</p>
 							<div
 								className='food-container__bookmark-icon'
-								onClick={() => removeBookmarkLocally(item.id_food)}>
+								onClick={() => removeBookmarkLocally(item.id_food, index)}>
 								<ion-icon name='bookmark'></ion-icon>
 							</div>
 						</div>

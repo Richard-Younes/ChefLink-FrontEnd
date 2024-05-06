@@ -1,11 +1,6 @@
 /** @format */
 
-import {
-	Link,
-	useNavigate,
-	useParams,
-	useSearchParams,
-} from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import PaginationComponent from '../components/PaginationComponent';
 import Spinner from '../components/Spinner';
 import { useEffect, useState } from 'react';
