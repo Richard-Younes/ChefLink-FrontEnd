@@ -8,9 +8,13 @@ import { useUser } from '../contexts/UserContext.jsx';
 import Spinner from './Spinner.jsx';
 import SpinnerImage from './SpinnerImage.jsx';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import CreditCardOutlinedIcon from '@mui/icons-material/CreditCardOutlined';
 import { Button, ThemeProvider, createTheme } from '@mui/material';
 import Popup from 'reactjs-popup';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import { useNavigate } from 'react-router-dom';
+import Notification from './Notification.jsx';
+
 const theme = createTheme({
 	palette: {
 		green: {
@@ -28,6 +32,8 @@ function CartContainer() {
 	const [imageURL, setImageURL] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
+	const [paymentMethod, setPaymentMethod] = useState('');
+
 	// Add Location states
 	const [locationName, setLocationName] = useState('');
 	const [phoneNumber, setPhoneNumber] = useState('');
@@ -35,9 +41,16 @@ function CartContainer() {
 	const [building, setBuilding] = useState('');
 	const [apartment, setApartment] = useState('');
 	const [instructions, setInstructions] = useState('');
+	const [selectedLocation, setSelectedLocation] = useState('');
+
+	const navigate = useNavigate();
 
 	// get location
 	const [location, setLocation] = useState([]);
+
+	const [selectedLocationEmpty, setSelectedLocationEmpty] = useState(false);
+	const [paymentMethodEmpty, setPaymentMethodEmpty] = useState(false);
+	const [notification, setNotification] = useState(null);
 
 	useEffect(() => {
 		async function fetchData() {
@@ -210,20 +223,85 @@ function CartContainer() {
 	}
 
 	function handleCheckout() {
-		// async function checkout() {
-		// 	setIsLoading(true);
-		// 	const response = await fetch(`${url}cart/place_order`, {
-		// 		method: 'POST',
-		// 		credentials: 'include',
-		// 	});
-		// 	const data = await response.json();
-		// 	console.log(data);
-		// 	setIsLoading(false);
-		// }
-		// setCartInfo(null);
-		// checkout();
-		// Getting the location info
+		if (!selectedLocation) return setSelectedLocationEmpty(true);
+		if (!paymentMethod) return setPaymentMethodEmpty(true);
+
+		async function updateCart() {
+			const sendData = {
+				to_change: ['location', 'payment_method'],
+				new_vals: [selectedLocation, paymentMethod],
+			};
+
+			const response = await fetch(`${url}cart/update_current_cart_attribute`, {
+				method: 'PUT',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				credentials: 'include',
+				body: JSON.stringify(sendData),
+			});
+
+			const data = await response.json();
+
+			if (!response.ok) {
+				setNotification({
+					message: 'Error updating the cart',
+					type: 'error',
+				});
+				setTimeout(() => {
+					navigate('/');
+				}, 2000);
+			}
+		}
+
+		async function placeOrder() {
+			const response = await fetch(`${url}cart/place_order`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				credentials: 'include',
+			});
+
+			const data = await response.json();
+			if (data?.status === 'SUCCESS') {
+				setTimeout(() => {
+					navigate('/');
+				}, 2000);
+				setNotification({
+					message: 'Order Placed Successfully',
+					type: 'success',
+				});
+			}
+			if (!response.ok) {
+				setNotification({
+					message: 'Error placing order',
+					type: 'error',
+				});
+
+				setTimeout(() => {
+					navigate('/');
+				}, 2000);
+			}
+
+			console.log('Order Placed Successfully');
+		}
+
+		updateCart()
+			.then(() => placeOrder())
+			.catch(error => console.error(error));
 	}
+
+	function handlePaymentMethod(method) {
+		setPaymentMethod(method);
+	}
+
+	function handleLocationSelect(locationId) {
+		setSelectedLocation(locationId);
+	}
+	const handleNotificationClose = () => {
+		setNotification(null);
+	};
 
 	return (
 		<div>
@@ -283,7 +361,7 @@ function CartContainer() {
 									<p>
 										<span className={styles.boldedText}>
 											Special instruction:
-										</span>{' '}
+										</span>
 										{bundle.special_instruction}
 									</p>
 
@@ -312,9 +390,18 @@ function CartContainer() {
 						<div className={styles.modalContainer}>
 							<div className={styles.addressContainer}>
 								<h4 className={styles.addressHeader}>Delivery Address</h4>
-
+								{selectedLocationEmpty ? (
+									<p className={styles.error}>* Select a Location</p>
+								) : null}
 								{location?.map((loc, index) => (
-									<div className={styles.address} key={index}>
+									<div
+										onClick={() => handleLocationSelect(loc.id_location)}
+										className={`${styles.address} ${
+											selectedLocation === loc.id_location
+												? styles.addressSelected
+												: ''
+										}`}
+										key={index}>
 										<LocationOnIcon
 											sx={{ fontSize: 60, marginBottom: '1rem' }}
 										/>
@@ -417,7 +504,14 @@ function CartContainer() {
 							<div className={styles.paymentMethod}>
 								<h4 className={styles.addressHeader}>Payment Method</h4>
 
-								<div className={styles.cashContainer}>
+								{paymentMethodEmpty ? (
+									<p className={styles.error}>* Select payment method</p>
+								) : null}
+								<div
+									onClick={() => handlePaymentMethod('cash')}
+									className={`${styles.cashContainer} ${
+										paymentMethod === 'cash' ? styles.cashContainerSelected : ''
+									}`}>
 									<LocalAtmIcon sx={{ fontSize: 60 }} />
 									<div>
 										<p className={styles.paymentHeader}>Cash</p>
@@ -425,7 +519,30 @@ function CartContainer() {
 											Pay with cash upon delivery
 										</p>
 									</div>
-									<button className={`btn ${styles.addCashMethodBtn}`}>
+									<button
+										onClick={() => handlePaymentMethod('cash')}
+										className={`btn ${styles.addCashMethodBtn}`}>
+										Add
+									</button>
+								</div>
+
+								<div
+									onClick={() => handlePaymentMethod('credit')}
+									className={`${styles.cashContainer} ${
+										paymentMethod === 'credit'
+											? styles.cashContainerSelected
+											: ''
+									}`}>
+									<CreditCardOutlinedIcon sx={{ fontSize: 60 }} />
+									<div>
+										<p className={styles.paymentHeader}>Credit</p>
+										<p className={styles.textColor}>
+											Go cashless on your order!
+										</p>
+									</div>
+									<button
+										onClick={() => handlePaymentMethod('credit')}
+										className={`btn ${styles.addCashMethodBtn}`}>
 										Add
 									</button>
 								</div>
@@ -433,10 +550,42 @@ function CartContainer() {
 								<div className={styles.creditContainer}></div>
 							</div>
 
-							<div className={styles.charge}></div>
+							<div className={styles.totalPayment}>
+								<div className={styles.payments}>
+									<p className={styles.paymentHeader}>Subtotal</p>
+									<p className={styles.paymentHeader}>${cart.price}</p>
+								</div>
+
+								<div className={`${styles.payments} ${styles.borderBottom}`}>
+									<p className={styles.textColor}>Delevery charge</p>
+									<p className={styles.textColor}>
+										{cart.price !== '0.0' ? '$5' : '0'}
+									</p>
+								</div>
+
+								<div className={styles.payments}>
+									<p className={styles.paymentHeader}>Total</p>
+									<p className={styles.paymentHeader}>
+										${cart.price !== '0.0' ? Number(cart.price) + 5 : '0.0'}
+									</p>
+								</div>
+							</div>
+
+							<button
+								onClick={handleCheckout}
+								className={`btn btn--orange ${styles.placeOrderButton}`}>
+								Place order
+							</button>
 						</div>
 					</Popup>
 				</ThemeProvider>
+				{notification && (
+					<Notification
+						message={notification.message}
+						type={notification.type}
+						onClose={handleNotificationClose}
+					/>
+				)}
 
 				<Button
 					onClick={() => deleteCart()}
