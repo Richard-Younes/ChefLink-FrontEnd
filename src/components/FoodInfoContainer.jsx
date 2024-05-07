@@ -112,7 +112,7 @@ function FoodInfoContainer({ item }) {
 					onClose={() => {
 						navigate('/');
 					}}>
-					<Modal foodName={item.name} />
+					<Modal foodName={item.name} foodId={item.id_food} />
 				</Popup>
 			</div>
 		</div>

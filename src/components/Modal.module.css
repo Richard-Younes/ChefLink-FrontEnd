@@ -1,5 +1,120 @@
 /** @format */
 
 .modalContainer {
-	overflow: hidden;
+	overflow-y: scroll;
+	display: flex;
+	flex-direction: column;
+	padding: 1rem 2rem;
+
+	max-height: 85vh;
+	width: 100rem;
+	background-color: white;
+}
+
+.foodname {
+	margin-bottom: 1rem;
+}
+
+.foodInfoContainer {
+	display: flex;
+	gap: 2rem;
+}
+
+.image {
+	width: 65%;
+	max-height: 60rem;
+
+	object-fit: cover;
+	border-radius: 2rem;
+}
+
+.twoColumns {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+	padding-bottom: 2rem;
+	border-bottom: 2px solid orange;
+}
+
+.twoColumns > li {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+/* Extras */
+
+.extrasContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding-bottom: 2rem;
+	border-bottom: 2px solid orange;
+}
+
+.extrasContainer > li {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	position: relative;
+}
+
+.extraHeader {
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+}
+
+.textSecondary {
+	color: #888;
+	position: absolute;
+	right: 10%;
+}
+
+.textarea {
+	width: 100%;
+	max-width: 400px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	font-size: 16px;
+	line-height: 1.5;
+	resize: vertical; /* Allow vertical resizing */
+	transition: border-color 0.3s ease;
+}
+
+/* Focus style */
+.textarea:focus {
+	outline: none;
+	border-color: dodgerblue;
+	box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2); /* Add a subtle blue shadow on focus */
+}
+
+/* Placeholder style */
+.textarea::placeholder {
+	color: #999;
+}
+
+.btnContainer {
+	display: flex;
+	gap: 2rem;
+	justify-content: space-evenly;
+	padding: 2rem 2rem;
+}
+
+.btnContainer > button {
+	padding: 0.5rem 1rem;
+	font-size: 1.4rem;
+}
+
+/* Quantity */
+.quatityContainer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.quantityBtn {
+	margin: 1.5rem;
+	font-size: 2rem;
+	cursor: pointer;
 }
