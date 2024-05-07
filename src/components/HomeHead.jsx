@@ -35,7 +35,10 @@ function HomeHead({ navigate }) {
 	}
 
 	useEffect(() => {
-		navigate(`/search?q=${searchQuery}`);
+		if (searchQuery !== '') {
+			navigate(`/search?q=${searchQuery}`);
+		} else navigate('/');
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [searchQuery]);
 	const handleChange = e => {
 		setSearchQuery(e.target.value);

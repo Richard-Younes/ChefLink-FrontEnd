@@ -1,0 +1,206 @@
+/** @format */
+
+.noBookmark {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 40vh;
+	font-size: 2rem;
+	font-weight: 500;
+	color: #333;
+}
+
+.bundlesContainer {
+	margin: 1rem 1rem;
+}
+
+.bundleContainer {
+	display: flex;
+	flex-direction: column;
+	margin: 1rem 2rem;
+	margin-bottom: 2rem;
+}
+
+.bundleName {
+	margin-bottom: 1rem;
+}
+
+.optionContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.optionsText {
+	font-size: 1.5rem;
+	font-weight: 500;
+	padding-left: 5rem;
+}
+
+.boldedText {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+
+.flexContainer {
+	display: flex;
+	gap: 2rem;
+	background-color: #f5f5f5;
+	border-radius: 2rem;
+}
+
+.imageFoodContainer {
+	height: 20rem;
+}
+
+.foodImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 10px;
+}
+
+.foodInfoContainer {
+}
+
+:global(.custom-icon) {
+	font-size: 1.5rem;
+	color: #28b485;
+	margin-bottom: -0.2rem;
+	margin-left: 0.5rem;
+}
+
+.trashIcon {
+	color: #ff0000;
+	font-size: 1.8rem;
+
+	margin-bottom: -0.2rem;
+	margin-left: 1rem;
+	cursor: pointer;
+	transition: all 0.2s ease-in-out;
+}
+
+.trashIcon:hover {
+	color: #ff4d4d;
+}
+
+.buttonContainer {
+	display: flex;
+	gap: 2rem;
+	margin-bottom: 5rem;
+}
+
+.modalContainer {
+	display: flex;
+
+	padding: 4rem;
+	background-color: #f5f5f5;
+	flex-direction: column;
+	border-radius: 2rem;
+
+	overflow-y: scroll;
+	max-height: 65rem;
+	gap: 2rem;
+}
+
+.addressHeader {
+	margin-bottom: 2rem;
+}
+
+.addressContainer {
+	background-color: white;
+	border-radius: 2rem;
+	padding: 2rem 4rem;
+	position: relative;
+}
+
+.address {
+	display: flex;
+	gap: 2rem;
+	align-items: center;
+	padding-bottom: 1.5rem;
+	margin-bottom: 1rem;
+
+	border-bottom: 2px solid orange;
+}
+
+.addLocation {
+	font-size: 1.8rem;
+	font-weight: 600;
+
+	margin-left: 90%;
+}
+
+/* Form */
+.addressModalContainer {
+	padding: 1rem;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+	align-items: center;
+}
+
+.input {
+	font-family: inherit;
+	color: inherit;
+	border-radius: 100px;
+	width: 25rem;
+	height: 2.5rem;
+	border: none;
+	box-shadow: 0 2px 2px #777;
+	padding: 1.2rem;
+	margin-top: -0.5rem;
+}
+input:focus {
+	outline: none;
+	box-shadow: inset 0 0 0 2px #55c57a;
+}
+
+.label {
+	font-size: 1.5rem;
+	display: flex;
+	gap: 2rem;
+	justify-content: center;
+
+	align-items: center;
+	align-content: center;
+}
+
+:global(#popup-240) {
+	width: 35%;
+	padding: 2rem;
+}
+
+/* Payment method */
+
+.paymentMethod {
+	background-color: white;
+	border-radius: 2rem;
+	padding: 2rem 4rem;
+}
+
+.cashContainer {
+	display: flex;
+	gap: 2rem;
+	align-items: center;
+	position: relative;
+}
+
+.addCashMethodBtn {
+	font-size: 1.5rem;
+	font-weight: 600;
+	padding: 0.8rem 3rem !important;
+	margin-left: 32%;
+}
+
+.paymentHeader {
+	font-weight: 600;
+	font-size: 1.8rem;
+}
+
+.textColor {
+	color: #888;
+}
