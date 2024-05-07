@@ -26,7 +26,7 @@
 	grid-template-columns: 1fr 1fr;
 	justify-content: center;
 	align-items: center;
-	gap: 1rem;
+	gap: 0.8rem;
 	column-gap: 3rem;
 }
 
@@ -179,8 +179,6 @@ input:focus {
 	grid-column: 1/-1;
 	grid-row: 13/14;
 	justify-self: center;
-	margin-top: -0.5rem;
-	margin-bottom: 0.5rem;
 	margin-right: 3rem;
 }
 

@@ -10,6 +10,7 @@ const UserContext = createContext();
 function UserProvider({ children }) {
 	const [user, setUser] = useState('Guest');
 	const [isLogged, setIsLogged] = useState(false);
+	const [role, setRole] = useState('customer');
 
 	useEffect(
 		function () {
@@ -21,6 +22,7 @@ function UserProvider({ children }) {
 
 				if (data.data !== '') {
 					setUser(data.data?.username);
+					setRole(data.data?.role);
 					setIsLogged(true);
 					console.log('User Provide Success');
 				}
@@ -35,6 +37,7 @@ function UserProvider({ children }) {
 		<UserContext.Provider
 			value={{
 				user,
+				role,
 				setUser,
 				isLogged,
 				setIsLogged,

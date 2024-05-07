@@ -17,6 +17,7 @@ function SignUpForm() {
 		last_name: '',
 		date_of_birth: '',
 		pp_url: '/profile/test.jpg',
+		role: '',
 	});
 
 	const [passwordVerified, setPasswordVerified] = useState(true);
@@ -41,6 +42,7 @@ function SignUpForm() {
 			last_name: formData.last_name,
 			date_of_birth: formData.date_of_birth,
 			pp_url: formData.pp_url,
+			role: formData.role,
 		};
 
 		async function handleSignUp() {
@@ -217,6 +219,38 @@ function SignUpForm() {
 					className={styles.input + ' ' + styles.row12}
 					placeholder='passowrd1234'
 				/>
+
+				<div className={styles.row13}>
+					<label
+						htmlFor='customer'
+						className={`${styles.label} ${styles.customRadio}`}>
+						<span className={styles.radioLabel}>Customer</span>
+						<input
+							onChange={e => handleChange(e, 'role')}
+							required
+							type='radio'
+							name='role'
+							id='customer'
+							value='customer'
+						/>
+						<span className={styles.radio}></span>
+					</label>
+
+					<label
+						htmlFor='chef'
+						className={`${styles.label} ${styles.customRadio}`}>
+						<span className={styles.radioLabel}>Chef</span>
+						<input
+							onChange={e => handleChange(e, 'role')}
+							required
+							type='radio'
+							name='role'
+							id='chef'
+							value='chef'
+						/>
+						<span className={styles.radio}></span>
+					</label>
+				</div>
 
 				<button
 					type='submit'
