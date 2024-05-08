@@ -9,6 +9,7 @@
 .form {
 	display: flex;
 	flex-direction: column;
+	align-items: flex-start;
 }
 
 .formGroup {
@@ -33,4 +34,37 @@
 input:focus {
 	outline: none;
 	box-shadow: inset 0 0 0 2px #55c57a;
+}
+
+.file {
+	width: 50%;
+}
+
+.textarea {
+	width: 400px;
+	max-width: 400px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	font-size: 16px;
+	line-height: 1.5;
+	resize: vertical; /* Allow vertical resizing */
+	transition: border-color 0.3s ease;
+}
+
+/* Focus style */
+.textarea:focus {
+	outline: none;
+	border-color: dodgerblue;
+	box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2); /* Add a subtle blue shadow on focus */
+}
+
+/* Placeholder style */
+.textarea::placeholder {
+	color: #999;
+}
+
+.optionInputContainer {
+	display: flex;
+	gap: 1rem;
 }
