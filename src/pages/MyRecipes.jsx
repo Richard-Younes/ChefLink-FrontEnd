@@ -10,9 +10,11 @@ import SpinnerImage from '../components/SpinnerImage';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import Popup from 'reactjs-popup';
 import AddRecipeForm from '../components/AddRecipeForm';
+import Spinner from '../components/Spinner';
 function MyRecipes() {
 	const { role } = useUser();
 	const navigate = useNavigate();
+	const [imageUpload, setImageUpload] = useState('');
 
 	const [myRecipes, setMyRecipes] = useState([]);
 	const [image, setImage] = useState([]);
@@ -97,7 +99,6 @@ function MyRecipes() {
 		deleteMyRecipe();
 	}
 
-	function handleAddRecipe() {}
 	return (
 		<div>
 			<h1>
@@ -114,40 +115,51 @@ function MyRecipes() {
 						/>
 					}
 					modal>
-					<AddRecipeForm />
+					<AddRecipeForm
+						imageUpload={imageUpload}
+						setMyRecipes={setMyRecipes}
+						setImageUpload={setImageUpload}
+					/>
 				</Popup>
 			</h1>
-			<div className={styles.bookmarkContainer}>
-				<PaginationComponent>
-					{myRecipes?.map((item, index) => (
-						<div className='food-container' key={index}>
-							{image.length !== 0 ? (
-								<img
-									className='food-container__image'
-									src={item.picture}
-									alt='Food image'
-								/>
-							) : (
-								<SpinnerImage />
-							)}
-							<div className='food-container__header'>
-								<p className='food-container__name'>{item.name}</p>
-							</div>
 
-							<div className='food-container__info'>
-								<ion-icon name='star'></ion-icon>
-								<p className='food-container__rating'>
-									{item.total_rating.toFixed(1)}
-								</p>
-								<ion-icon
-									name='trash-outline'
-									class={styles.trashIcon}
-									onClick={() => handleDeleteMyRecipe(item.id_food)}></ion-icon>
+			{myRecipes.length === 0 ? (
+				<Spinner />
+			) : (
+				<div className={styles.bookmarkContainer}>
+					<PaginationComponent>
+						{myRecipes?.map((item, index) => (
+							<div className='food-container' key={index}>
+								{image.length !== 0 ? (
+									<img
+										className='food-container__image'
+										src={item.picture}
+										alt='Food image'
+									/>
+								) : (
+									<SpinnerImage />
+								)}
+								<div className='food-container__header'>
+									<p className='food-container__name'>{item.name}</p>
+								</div>
+
+								<div className='food-container__info'>
+									<ion-icon name='star'></ion-icon>
+									<p className='food-container__rating'>
+										{item.total_rating.toFixed(1)}
+									</p>
+									<ion-icon
+										name='trash-outline'
+										class={styles.trashIcon}
+										onClick={() =>
+											handleDeleteMyRecipe(item.id_food)
+										}></ion-icon>
+								</div>
 							</div>
-						</div>
-					))}
-				</PaginationComponent>
-			</div>
+						))}
+					</PaginationComponent>
+				</div>
+			)}
 		</div>
 	);
 }

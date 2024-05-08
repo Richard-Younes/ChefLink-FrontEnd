@@ -5,15 +5,16 @@ import styles from './AddRecipeForm.module.css';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
 import { url } from '../values';
 
-function AddRecipeForm() {
+function AddRecipeForm(setMyRecipes, setImageUpload) {
+	const [id, setId] = useState('');
 	const [recipeData, setRecipeData] = useState({
 		name: '',
-		price: '',
+		price: 0,
 		picture: '',
 		ingredients: '',
 		description: '',
 		timing: '',
-		options: [{ option_name: '', option_price: '', option_type: '' }],
+		options: [{ option_name: '', option_price: 0, option_type: '' }],
 		cuisine: '',
 		type: '',
 		perks: '',
@@ -43,16 +44,22 @@ function AddRecipeForm() {
 		e.preventDefault();
 		const sendData = {
 			name: recipeData.name,
-			price: recipeData.price,
-			picture: 'recipeData.picture.jpg',
-			ingredients: [recipeData.ingredients.replace(/,\s*/g, ',').split(',')],
+			price: Number(recipeData.price),
+			picture: 'recipeDatapicture.jpg',
+			ingredients: [...recipeData.ingredients.replace(/,\s*/g, ',').split(',')],
 			description: recipeData.description,
 			timing: `${recipeData.timing} minutes`,
-			options: recipeData.options,
+			options: [
+				{
+					option_name: recipeData.options[0].option_name,
+					option_price: Number(recipeData.options[0].option_price),
+					option_type: recipeData.options[0].option_type,
+				},
+			],
 			category: {
 				cuisine: recipeData.cuisine,
 				type: recipeData.type,
-				perks: [recipeData.perks.replace(/,\s*/g, ',').split(',')],
+				perks: [...recipeData.perks.replace(/,\s*/g, ',').split(',')],
 			},
 		};
 		async function AddRecipe() {
@@ -62,11 +69,15 @@ function AddRecipeForm() {
 					headers: {
 						'Content-Type': 'application/json',
 					},
+					credentials: 'include',
 					body: JSON.stringify(sendData),
 				});
 				const data = await res.json();
 				if (res.ok) {
 					alert('Recipe added successfully');
+					// setMyRecipes(prevState => [...prevState, sendData]);
+					setImageUpload();
+					setId(data.data);
 				} else {
 					console.log(data.error);
 					alert('Failed to add recipe');
@@ -75,9 +86,11 @@ function AddRecipeForm() {
 				console.log(error);
 			}
 		}
+
 		AddRecipe();
 		console.log(sendData);
 	}
+	console.log(id);
 
 	return (
 		<div className={styles.modalContainer}>
@@ -119,7 +132,7 @@ function AddRecipeForm() {
 						accept='image/*'
 						placeholder='Upload Image'
 						onChange={e => {
-							setRecipeData({ ...recipeData, picture: e.target.files[0] });
+							setImageUpload({ picture: e.target.files[0] });
 						}}
 					/>
 				</div>
