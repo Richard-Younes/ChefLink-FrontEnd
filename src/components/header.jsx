@@ -41,7 +41,7 @@ export function LogoHeader() {
 
 function HeaderPagesList() {
 	const [profileImage, setProfileImage] = useState(null);
-	const { user, isLogged } = useUser();
+	const { user, isLogged, role } = useUser();
 
 	// This useEffect is used to get the Image URL as well as synchronise with uploading and deleting images
 	useEffect(() => {
@@ -176,6 +176,11 @@ function HeaderPagesList() {
 				)}
 			</div>
 			<p className='page__list-username'>{user}</p>
+			{role === 'chef' ? (
+				<NavLink to='/myrecipe' className='page__list-elements'>
+					My Recipes
+				</NavLink>
+			) : null}
 			<NavLink to='/' className='page__list-elements'>
 				Home
 			</NavLink>

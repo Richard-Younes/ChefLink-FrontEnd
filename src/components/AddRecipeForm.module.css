@@ -1,0 +1,36 @@
+/** @format */
+
+.modalContainer {
+	padding: 1rem 2rem;
+	overflow-y: scroll;
+	max-height: 85vh;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+}
+
+.formGroup {
+	margin-bottom: 1rem;
+	display: flex;
+	gap: 1rem;
+
+	flex-direction: column;
+}
+
+.input {
+	font-family: inherit;
+	color: inherit;
+	border-radius: 100px;
+	width: 25rem;
+	height: 2.5rem;
+	border: none;
+	box-shadow: 0 2px 2px #777;
+	padding: 1.2rem;
+	margin-top: -0.5rem;
+}
+input:focus {
+	outline: none;
+	box-shadow: inset 0 0 0 2px #55c57a;
+}
