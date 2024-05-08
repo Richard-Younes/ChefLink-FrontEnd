@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { url } from '../values';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import SpinnerImage from './SpinnerImage';
-function Modal({ foodName, foodId }) {
+function Modal({ foodName, foodId, close }) {
 	const { id } = useParams();
 	const [foodInfo, setFoodInfo] = useState({});
 	const [foodImage, setFoodImage] = useState('');
@@ -111,6 +111,7 @@ function Modal({ foodName, foodId }) {
 		}
 
 		addCart();
+		close();
 	}
 	console.log(foodInfo);
 	return (

@@ -95,7 +95,7 @@ function CartContainer() {
 
 	let bundles, cart;
 
-	const foodIds = cartInfo?.bundles.map(bundle => `food/${bundle.id_food}`);
+	let foodIds = cartInfo?.bundles.map(bundle => `food/${bundle.id_food}`);
 
 	if (cartInfo) {
 		bundles = cartInfo.bundles;
@@ -109,7 +109,6 @@ function CartContainer() {
 	}
 
 	if (!cartInfo || isLoading) return <Spinner />;
-	console.log(cart, bundles);
 
 	function handleLocationSubmit(e, close) {
 		e.preventDefault();
@@ -170,6 +169,9 @@ function CartContainer() {
 	}
 
 	function handleDeleteBundle(bundleId, index) {
+		setImageURL(null);
+		bundles.splice(index, 1);
+
 		async function deleteBundle() {
 			const response = await fetch(`${url}cart/remove_from_cart`, {
 				method: 'DELETE',
@@ -192,13 +194,27 @@ function CartContainer() {
 			setCartInfo(data.data);
 		}
 
+		async function fetchImages() {
+			const response = await fetch(`${url}media/generate_image_url_bulk`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				credentials: 'include',
+				body: JSON.stringify({ paths: foodIds }),
+			});
+
+			const data = await response.json();
+			setImageURL(data.data);
+		}
+
 		deleteBundle()
 			.then(() => {
 				// Once deleteBundle finishes, call fetchData
 				return fetchData();
 			})
 			.then(() => {
-				console.log('Both deleteBundle and fetchData completed');
+				return fetchImages();
 			})
 			.catch(error => {
 				console.error('Error:', error);
@@ -214,7 +230,6 @@ function CartContainer() {
 			});
 
 			const data = await response.json();
-			console.log(data);
 			setIsLoading(false);
 		}
 
@@ -361,14 +376,12 @@ function CartContainer() {
 									<p>
 										<span className={styles.boldedText}>
 											Special instruction:
-										</span>
+										</span>{' '}
 										{bundle.special_instruction}
 									</p>
 
 									<p>Quantity: {bundle.quantity}</p>
 									<p>Price: ${bundle.total_bundle_price}</p>
-
-									<a href=''>More info</a>
 								</div>
 							</div>
 						</div>

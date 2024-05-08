@@ -179,7 +179,13 @@ function BookmarkedItems() {
 								onClose={() => {
 									navigate('/bookmark');
 								}}>
-								<Modal foodName={item.name} foodId={item.id_food} />
+								{close => (
+									<Modal
+										foodName={item.name}
+										foodId={item.id_food}
+										close={close}
+									/>
+								)}
 							</Popup>
 						</div>
 					</div>
